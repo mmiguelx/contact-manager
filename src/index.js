@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 //import App from './App';
 import * as serviceWorker from './serviceWorker';
+import './style.css';
 
-const contacts = ["Mario Pernia", "Javier Quijada"];
+const contacts = ["Mario Pernia", "Javier Quijada", "Javier Cervilla"];
 
 function AddPersonForm(props) {
   const[person, setPerson] = useState("");
@@ -13,8 +14,10 @@ function AddPersonForm(props) {
   }
 
   function handleSubmit(e) {
-    props.handleSubmit(person);
-    setPerson("");
+    if (person !== '') {
+      props.handleSubmit(person);
+      setPerson("");
+    }
     e.preventDefault();
   }
 
@@ -24,7 +27,7 @@ function AddPersonForm(props) {
       placeholder="Add new contact"
       onChange={handleChange}
       value={person} />
-      <button type="submit">Add</button>
+      <button className="add" type="submit">Add</button>
     </form>
   );
 }
