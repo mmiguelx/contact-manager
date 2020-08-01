@@ -4,7 +4,7 @@ import './index.css';
 //import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-function AddPersonForm() {
+function AddPersonForm(props) {
   const[person, setPerson] = useState("");
 
   function handleChange(e) {
@@ -12,6 +12,8 @@ function AddPersonForm() {
   }
 
   function handleSubmit(e) {
+    props.handleSubmit(person);
+    setPerson("");
     e.preventDefault();
   }
 
@@ -42,10 +44,10 @@ function ContactManager(props) {
   }
 
   return (
-    <div>
-      <AddPersonForm />
+    <>
+      <AddPersonForm handleSubmit={addPerson}/>
       <PeopleList data={contacts} />
-    </div>
+    </>
   );
 }
 
