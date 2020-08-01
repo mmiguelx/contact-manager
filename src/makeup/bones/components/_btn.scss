@@ -1,0 +1,18 @@
+/*************************************
+*   Button component classes
+*   Extends mixins from
+*   -
+**************************************
+*/
+
+.btn{
+  padding: 1em 2em;
+  display: inline-block;
+  color: $white-color;
+}
+
+.btn-outline{
+  padding: 1em 2em;
+  border: 1px solid #e1e1e1;
+  display: inline-block;
+}

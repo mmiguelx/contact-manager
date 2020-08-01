@@ -1,0 +1,107 @@
+/*************************************
+*   Text utilities
+**************************************
+*/
+
+h1,h2,h3,h4,h5,h6,p,.btn,span,code{
+  margin: .25em 0;
+}
+
+p{
+  line-height: 1.5;
+}
+
+.text-center{
+  text-align: center;
+}
+.text-left{
+  text-align: left;
+}
+.text-right{
+  text-align: right;
+}
+.text-justify{
+  text-align: justify;
+}
+
+.text-2xl {
+	font-size: 4rem;
+	line-height: 1.2;
+}
+
+.text-xl {
+	font-size: 3rem;
+	line-height: 1.2;
+}
+
+.text-lg{
+	font-size: 2.25rem;
+}
+
+.text-md{
+	font-size: 1.5rem;
+}
+
+.text-sm{
+	font-size: 1.115rem;
+}
+
+.text-xs{
+  font-size: .8rem;
+}
+
+.uppercase{
+  text-transform: uppercase;
+}
+.capitalize{
+  text-transform: capitalize;
+}
+.lowercase{
+  text-transform: lowercase;
+}
+
+.thin{
+  font-weight: 200;
+}
+
+.light{
+  font-weight: 300;
+}
+
+.normal{
+  font-weight: 400;
+}
+
+.bold{
+  font-weight: 600;
+}
+
+.italics{
+  font-style: italic;
+}
+
+.whishper{
+  font-size: 14px;
+	display: block;
+	opacity: .8;
+}
+.muted{
+	filter: grayscale(1);
+	opacity: .5;
+}
+
+@media screen and (max-width: 1024px)
+{
+  	/* Text Styles */
+	.text-x-large {
+	  font-size: 3rem;
+	}
+
+	.text-large {
+	  font-size: 2rem;
+	}
+
+	.title {
+	  font-size: 1rem;
+	}
+}

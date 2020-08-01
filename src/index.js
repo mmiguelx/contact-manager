@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 //import App from './App';
 import * as serviceWorker from './serviceWorker';
 import './style.css';
+import './makeup/makeup.scss'
 
 const contacts = ["Mario Pernia", "Javier Quijada", "Javier Cervilla"];
 

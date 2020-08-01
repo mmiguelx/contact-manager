@@ -1,0 +1,68 @@
+/* 
+for each color must exist a
+bg-
+color-
+*/
+$primary-color: #1994d5 !default;
+$secondary-color: #0e5f8a !default;
+$danger-color: #d31919 !default;
+$success-color: #19d548 !default;
+$warning-color: #d2d519 !default;
+$light-color: #e1e1e1 !default;
+$dark-color: #222 !default;
+$font-color: #424242 !default;
+$white-color: white;
+$colorSet:
+  "primary" $primary-color $light-color,
+  "secondary" $secondary-color $light-color,
+  "danger" $danger-color $light-color,
+  "success" $success-color $light-color,
+  "warning" $warning-color $light-color,
+  "light" $light-color $dark-color,
+  "dark" $dark-color $white-color,
+  "gray" #646464 white;
+
+  // default color for buttons
+.btn{
+  background-color: $primary-color;
+}
+
+@each $name, $color, $text in $colorSet {
+  .bg-#{$name}{
+    background-color: #{$color};
+    color: #{$text}
+  }
+  .color-#{$name}{
+    color: #{$color};
+  }
+  .border-#{$name}{
+    border-color: #{$color};
+  }
+  .hover-bg-#{$name}:hover{
+    background-color: #{$color};
+    color: #{$text}
+  }
+}
+
+.bg-white{
+  background-color: white;
+}
+.bg-none{
+  background-color: transparent;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  color: $font-color;
+}
