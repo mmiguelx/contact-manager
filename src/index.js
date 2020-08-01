@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 //import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+const contacts = ["Mario Pernia", "Javier Quijada"];
 
 function AddPersonForm(props) {
   const[person, setPerson] = useState("");
@@ -50,8 +51,6 @@ function ContactManager(props) {
     </>
   );
 }
-
-const contacts = ["Mario Pernia", "Javier Quijada"];
 
 ReactDOM.render(
   <ContactManager data={contacts} />,
