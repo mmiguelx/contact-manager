@@ -22,13 +22,16 @@ function AddPersonForm(props) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text"
-      placeholder="Add new contact"
-      onChange={handleChange}
-      value={person} />
-      <button className="add" type="submit">Add</button>
-    </form>
+    <div className="formulario">
+      <form onSubmit={handleSubmit}>
+        <input type="text"
+        placeholder="Add new contact"
+        onChange={handleChange}
+        className="contactInfo"
+        value={person} />
+        <button className="add" type="submit">add</button>
+      </form>
+    </div>
   );
 }
 
@@ -37,11 +40,11 @@ function PeopleList(props) {
   const listItems = arr.map((val, index) =>
     <li key={index}>{val}</li>
   );
-  return <ul>{listItems}</ul>
+  return <div><ul>{listItems}</ul></div>
 }
 
 function ContactManager(props) {
-  const [contacts, setContacts] = useState(props.data);
+  const [contacts,setContacts] = useState(props.data);
 
   function addPerson(name) {
     setContacts([...contacts, name]);
