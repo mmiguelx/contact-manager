@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './makeup/makeup.scss'
 import AddPersonForm from './AddPersonForm'
 import PeopleList from './PeopleList'
+import Storage from './StorageTest'
 
 const contacts = ["Mario Pernia", "Javier Quijada", "Javier Cervilla"];
 
@@ -24,6 +25,7 @@ function ContactManager(props) {
 ReactDOM.render(
   <div className="b-none shadow rounded-lg card w-auto  p-3 m-4">
     <ContactManager data={contacts} />
+    <Storage />
   </div>,
   document.getElementById('root')
 );
