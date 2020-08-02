@@ -3,8 +3,8 @@ import './makeup/makeup.scss';
 import {AddPersonForm} from './components/AddPersonForm';
 import {PeopleList} from './components/PeopleList';
 
-export function App(props) {
-	const [contacts,setContacts] = useState(props.data);
+export function App() {
+	const [contacts,setContacts] = useState([]);
 
 	function addPerson(name) {
 	  setContacts([...contacts, name]);
