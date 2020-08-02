@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './makeup/makeup.scss'
 
-function AddPersonForm(props) {
+export function AddPersonForm(props) {
 	const[person, setPerson] = useState("");
 
 	function handleChange(e) {
@@ -31,5 +31,3 @@ function AddPersonForm(props) {
 		</div>
 	);
 }
-
-export default AddPersonForm;

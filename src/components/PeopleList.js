@@ -1,7 +1,7 @@
 import React from 'react';
 import './makeup/makeup.scss'
 
-function PeopleList(props) {
+export function PeopleList(props) {
 	const arr = props.data;
 	const listItems = arr.map((val, index) =>
 		<li className="hover-up rounded-xl shadow  bg-white p m text-md" key={index}>
@@ -12,5 +12,3 @@ function PeopleList(props) {
 				<ul>{listItems}</ul>
 			</div>
 }
-
-export default PeopleList;

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './makeup/makeup.scss'
-import AddPersonForm from './AddPersonForm'
-import PeopleList from './PeopleList'
-import Storage from './StorageTest'
+import {AddPersonForm} from './AddPersonForm'
+import {PeopleList} from './PeopleList'
+import {Storage} from './StorageTest'
 
-const contacts = ["Mario Pernia", "Javier Quijada", "Javier Cervilla"];
+const contacts = [];
 
 function ContactManager(props) {
   const [contacts,setContacts] = useState(props.data);

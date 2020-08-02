@@ -1,6 +1,6 @@
 import React from 'react';
 
-const useLocalStorageState = localStorageKey => {
+const UseLocalStorageState = localStorageKey => {
 	const [value, setValue] = React.useState(
 		localStorage.getItem(localStorageKey) || ''
 	);
@@ -12,8 +12,8 @@ const useLocalStorageState = localStorageKey => {
 	return [value, setValue];
 };
 
-const Storage = () => {
-	const [value, setValue] = useLocalStorageState('myValue');
+export const Storage = () => {
+	const [value, setValue] = UseLocalStorageState('myValue');
 
 	const onChange = event => setValue(event.target.value);
 
@@ -25,5 +25,3 @@ const Storage = () => {
 		</div>
 	);
 };
-
-export default Storage;
