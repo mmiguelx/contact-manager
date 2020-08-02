@@ -8,7 +8,7 @@ export function AddPersonForm(props) {
 
 	function handleSubmit(e) {
 	  if (person !== '') {
-		props.handleSubmit(person);
+		props.addPerson(person);
 		setPerson("");
 	  }
 	  e.preventDefault();
