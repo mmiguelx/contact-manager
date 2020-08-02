@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './makeup/makeup.scss'
+import React, {useState} from 'react';
+import '../makeup/makeup.scss'
 
 export function AddPersonForm(props) {
 	const[person, setPerson] = useState("");

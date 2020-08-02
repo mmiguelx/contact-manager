@@ -1,5 +1,5 @@
 import React from 'react';
-import './makeup/makeup.scss'
+import '../makeup/makeup.scss'
 
 export function PeopleList(props) {
 	const arr = props.data;

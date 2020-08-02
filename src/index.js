@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './makeup/makeup.scss'
-import {AddPersonForm} from './AddPersonForm'
-import {PeopleList} from './PeopleList'
-import {Storage} from './StorageTest'
+import {AddPersonForm} from './components/AddPersonForm'
+import {PeopleList} from './components/PeopleList'
+import {Storage} from './components/StorageTest'
 
 const contacts = [];
 
