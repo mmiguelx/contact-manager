@@ -8,7 +8,7 @@ Updates:
 <p>01/08/19 -> Bases of the project has been created...</p>
 
 Planned features:
-<ul><li>More filters on contact info like name lenght or bad characters</li>
+<ul><li>More filters on contact info like name length or bad characters</li>
   <li>More data to collect from user (name, phone, birthday...)</li>
   <li>Some kind of link to Vizum</li>
   <li>Database backend</li>
