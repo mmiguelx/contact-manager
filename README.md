@@ -1,6 +1,7 @@
 <h1># contact-manager</h1>
 
-<p>This is a contact manager webapp guided by SoloLearn React course on his base.</p>
+<p>This is a contact manager webapp guided by SoloLearn React course on his base, now working on put more features in the project with a bit more functionality.</p>
+<p>Contributors: (<a href=https://github.com/JavierCervilla>Javier Cervilla</a>)</p>
 
 Updates:
 <p>03/08/19 -> Localstorage can save data from contacts</p>
