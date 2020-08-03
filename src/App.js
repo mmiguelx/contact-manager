@@ -22,7 +22,9 @@ export function App() {
 	}
 
 	function deletePerson(key) {
-		console.log(key);
+		var temp = [...contacts];
+		temp.splice(key, 1);
+		setContacts([...temp]);
 	}
 
 	return (
