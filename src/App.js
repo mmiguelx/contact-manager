@@ -4,7 +4,7 @@ import {AddPersonForm} from './components/AddPersonForm';
 import {PeopleList} from './components/PeopleList';
 
 export function App() {
-	const [contacts,setContacts] = useState([]);
+	const [contacts,setContacts] = useState([{name: "", tel: ""}]);
 
 	useEffect(() => {
 		let data = localStorage.getItem('contacts');
@@ -17,8 +17,8 @@ export function App() {
 		localStorage.setItem('contacts', JSON.stringify(contacts));
 	}, [contacts]);
 
-	function addPerson(name) {
-	  setContacts([...contacts, name]);
+	function addPerson(person) {
+		setContacts([...contacts, {name: person.name, tel: person.tel}]);
 	}
 
 	function deletePerson(key) {
