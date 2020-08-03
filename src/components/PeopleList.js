@@ -12,8 +12,9 @@ export function PeopleList(props) {
 		<li
 			className="hover-up rounded-xl shadow  bg-white p m text-md"
 			key={index}>{val}
-			<button value={index} onClick={handleClick}>
-				Delete
+			<button
+				value={index}
+				onClick={handleClick}>Delete
 			</button>
 		</li>
 	);
