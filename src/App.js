@@ -18,7 +18,6 @@ export function App() {
 	}, [contacts]);
 
 	function addPerson(person) {
-		console.log(person);
 		setContacts([...contacts, {name: person.name, tel: person.tel}]);
 	}
 
