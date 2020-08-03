@@ -21,9 +21,15 @@ export function App() {
 	  setContacts([...contacts, name]);
 	}
 
+	function deletePerson(key) {
+		var temp = [...contacts];
+		temp.splice(key, 1);
+		setContacts([...temp]);
+	}
+
 	return (
 	  <>
-		<PeopleList data={contacts} />
+		<PeopleList data={contacts} deletePerson={deletePerson}/>
 		<AddPersonForm addPerson={addPerson}/>
 	  </>
 	);
