@@ -21,9 +21,13 @@ export function App() {
 	  setContacts([...contacts, name]);
 	}
 
+	function deletePerson(key) {
+		console.log(key);
+	}
+
 	return (
 	  <>
-		<PeopleList data={contacts} />
+		<PeopleList data={contacts} deletePerson={deletePerson}/>
 		<AddPersonForm addPerson={addPerson}/>
 	  </>
 	);
