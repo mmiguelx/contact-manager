@@ -6,7 +6,7 @@ export function AddPersonForm(props) {
 	const { register, handleSubmit } = useForm();
 
 	/*
-	**onSubmit get the data from ref in the form, if there's no blank box on
+	**onSubmit gets the data from ref in the form, if there's no blank box on
 	**submit parent addPerson function is called with an object data with the
 	**same structure.
 	*/

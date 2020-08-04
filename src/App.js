@@ -16,7 +16,7 @@ export function App() {
 
 	/*
 	**The second useEffect is used to set the data on localStorage if there's
-	**any change on contacts.
+	**any changes on contacts.
 	*/
 	useEffect(() => {
 		localStorage.setItem('contacts', JSON.stringify(contacts));

@@ -5,7 +5,7 @@ export function PeopleList(props) {
 	const arr = [...props.data];
 
 	/*
-	**The button from listItems hold the index value of the element, the event
+	**The button from listItems holds the index value of the element, the event
 	**is triggered and deletePerson from parent component is called with index
 	**as parameter
 	*/
@@ -19,8 +19,8 @@ export function PeopleList(props) {
 	}
 
 	/*
-	**listItems iterates on data, set the key of li tag and button value with
-	**the index of the element and render every element aswell.
+	**listItems iterates on data, sets the key of li tag and button value with
+	**the index of the element and renders every element.
 	*/
 	const listItems = arr.map(val => (
 		<li
