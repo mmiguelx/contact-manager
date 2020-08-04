@@ -7,9 +7,9 @@ export function PeopleList(props) {
 		.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1);
 
 	/*
-	**The button from listItems holds the index value of the element, the event
-	**is triggered and deletePerson from parent component is called with index
-	**as parameter.
+	**The button from listItems holds the phone number value of the element, the
+	**event is triggered and deletePerson from parent component is called with
+	**index as parameter.
 	*/
 	function handleClick(e) {
 		props.deletePerson(e.target.value);
@@ -17,7 +17,7 @@ export function PeopleList(props) {
 
 	/*
 	**listItems iterates on data, sets the key of li tag and button value with
-	**the index of the element and renders every element.
+	**the phone number of the element and renders every element.
 	*/
 	const listItems = arr
 		.map(val => (
