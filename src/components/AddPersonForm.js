@@ -3,17 +3,18 @@ import '../makeup/makeup.scss';
 import {useForm} from "react-hook-form";
 
 export function AddPersonForm(props) {
-	const { register, handleSubmit } = useForm();
+	const { register, handleSubmit, errors } = useForm();
 
 	/*
-	**onSubmit get the data from ref in the form, if there's no blank box on
-	**submit parent addPerson function is called with an object data with the
-	**same structure.
+	**onSubmit gets the data from ref in the form, if there's no blank box on
+	**submit and the telephone number is unique the parent addPerson function is
+	**called with an object data with the same structure.
 	*/
-	const onSubmit = data => {
-		if (data.name !== "" && data.tel !== "") {
+	const onSubmit = (data, e) => {
+		if (props.data.findIndex(obj => obj.tel === data.tel) === -1) {
 			props.addPerson(data);
 		}
+		e.target.reset();
 	}
 
 	return (
@@ -26,20 +27,24 @@ export function AddPersonForm(props) {
 					placeholder="Add new contact"
 					className="w-full input hover-up border rounded-xl text-l align-center w-auto m p-1"
 					name="name"
-					ref={register}
+					ref={register({required: true})}
+					defaultValue=""
 				/>
 				<input
 					type="text"
 					placeholder="Phone Number"
 					className="w-full input hover-up border rounded-xl text-l align-center w-auto m p-1"
 					name="tel"
-					ref={register}
+					ref={register({required: true})}
+					defaultValue=""
 				/>
 				<button
 					className="btn hover-up rounded-xl shadow justify-end"
 					type="submit">Add
 				</button>
 			</form>
+			{errors.name && "Name required"}
+			{errors.tel && "Phone required"}
 		</div>
 	);
 }

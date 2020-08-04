@@ -2,37 +2,35 @@ import React from 'react';
 import '../makeup/makeup.scss'
 
 export function PeopleList(props) {
-	const arr = [...props.data];
+	//Contacts is passed by props then is copied and sorted by name
+	const arr = [...props.data]
+		.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1);
 
 	/*
-	**The button from listItems hold the index value of the element, the event
+	**The button from listItems holds the index value of the element, the event
 	**is triggered and deletePerson from parent component is called with index
-	**as parameter
+	**as parameter.
 	*/
 	function handleClick(e) {
 		props.deletePerson(e.target.value);
 	}
 
-	//Simple function to get the index of the element by comparing name
-	function getIndex(name) {
-		return arr.findIndex(obj => obj.name === name);
-	}
-
 	/*
-	**listItems iterates on data, set the key of li tag and button value with
-	**the index of the element and render every element aswell.
+	**listItems iterates on data, sets the key of li tag and button value with
+	**the index of the element and renders every element.
 	*/
-	const listItems = arr.map(val => (
-		<li
-			className="hover-up rounded-xl shadow  bg-white p m text-md"
-			key={getIndex(val.name)}>
-			Name: {val.name} - Phone: {val.tel}
-			<button
-				value={getIndex(val.name)}
-				onClick={handleClick}>Delete
-			</button>
-		</li>
-	));
+	const listItems = arr
+		.map(val => (
+			<li
+				className="hover-up rounded-xl shadow  bg-white p m text-md"
+				key={val.tel}>
+				Name: {val.name} - Phone: {val.tel}
+				<button
+					value={val.tel}
+					onClick={handleClick}>Delete
+				</button>
+			</li>
+		));
 
 	return	<div className="card w-full rounded-xl shadow p m-y">
 				<ul>{listItems}</ul>
