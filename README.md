@@ -5,7 +5,7 @@
 
 Updates:
 <p>03/08/19 -> Added multiple data storing.</p>
-<p>03/08/19 -> Added a "Deleted" button right next to contact.</p>
+<p>03/08/19 -> Added a "Delete" button right next to contact.</p>
 <p>03/08/19 -> Localstorage can save data from contacts.</p>
 <p>02/08/19 -> Now I'm working with someone else (<a href=https://github.com/JavierCervilla>Javier Cervilla</a>) who put some css styles using SASS and a <a href=https://github.com/ftdgomez>Daniel Gomez</a> mini framework called makeup. Source: https://github.com/ftdgomez/makeup</p>
 <p>01/08/19 -> Bases of the project has been created...</p>
@@ -17,6 +17,6 @@ Planned features:
   <li>Database backend</li>
   <li>Responsive webapp</li>
   <li>Alphabetic sorting</li>
-  <li>Modify contact functionality</li>
-  <li>Change the contact list for a table or something more organize.</li>
+  <li>Modify contact view, something more appeling</li>
+  <li>Change the contact list for a table or something more organized</li>
 </ul>
