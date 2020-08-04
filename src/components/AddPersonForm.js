@@ -6,9 +6,9 @@ export function AddPersonForm(props) {
 	const { register, handleSubmit, errors } = useForm();
 
 	/*
-	**onSubmit gets the data from ref in the form, if there's no blank box on
-	**submit and the telephone number is unique the parent addPerson function is
-	**called with an object data with the same structure.
+	**onSubmit gets the data from ref in the form, if the telephone number is
+	**unique the parent addPerson function is called with an object data with
+	**the same structure.
 	*/
 	const onSubmit = (data, e) => {
 		if (props.data.findIndex(obj => obj.tel === data.tel) === -1) {
