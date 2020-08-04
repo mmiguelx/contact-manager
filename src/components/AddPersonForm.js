@@ -10,8 +10,8 @@ export function AddPersonForm(props) {
 	**submit parent addPerson function is called with an object data with the
 	**same structure.
 	*/
-	const onSubmit = (data, e) => {
-		if (data.name !== "" && data.tel !== "") {
+	const OnSubmit = (data, e) => {
+		if (data.name !== "" && data.tel !== "" && props.data.findIndex(obj => obj.tel === data.tel) === -1) {
 			props.addPerson(data);
 		}
 		e.target.reset();
@@ -21,7 +21,7 @@ export function AddPersonForm(props) {
 		<div className="flex w-full m-1 border rounded-xl">
 			<form
 				className="w-full card-body rounded-xl shadow flex justify-between"
-				onSubmit={handleSubmit(onSubmit)}>
+				onSubmit={handleSubmit(OnSubmit)}>
 				<input
 					type="text"
 					placeholder="Add new contact"

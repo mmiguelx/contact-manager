@@ -27,16 +27,18 @@ export function App() {
 	**the same structure as contacts and use setContacts to add the new person.
 	*/
 	function addPerson(person) {
-		setContacts([...contacts, {name: person.name, tel: person.tel}]);
+		setContacts([...contacts,
+		{name: person.name, tel: person.tel}]);
 	}
 
 	/*
-	**deletePerson is called from PeopleList with the index as a parameter,
+	**deletePerson is called from PeopleList with the telephone as a parameter,
 	**in the variable temp a copy is made, using the index of the element, this
 	**is removed and then contacts is set again with the modified temp.
 	*/
-	function deletePerson(key) {
+	function deletePerson(tel) {
 		var temp = [...contacts];
+		var key = temp.findIndex(obj => obj.tel === tel);
 		temp.splice(key, 1);
 		setContacts([...temp]);
 	}
@@ -44,7 +46,7 @@ export function App() {
 	return (
 		<div className="b-none shadow rounded-lg card w-auto p-3 m-0">
 			<PeopleList data={contacts} deletePerson={deletePerson}/>
-			<AddPersonForm addPerson={addPerson}/>
+			<AddPersonForm data={contacts} addPerson={addPerson}/>
 		</div>
 	);
 }
