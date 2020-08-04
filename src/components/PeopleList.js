@@ -7,13 +7,13 @@ export function PeopleList(props) {
 	/*
 	**The button from listItems holds the index value of the element, the event
 	**is triggered and deletePerson from parent component is called with index
-	**as parameter
+	**as parameter.
 	*/
 	function handleClick(e) {
 		props.deletePerson(e.target.value);
 	}
 
-	//Simple function to get the index of the element by comparing name
+	//Simple function to get the index of the element by comparing name.
 	function getIndex(name) {
 		return arr.findIndex(obj => obj.name === name);
 	}
