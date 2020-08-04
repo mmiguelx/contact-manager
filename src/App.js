@@ -42,9 +42,9 @@ export function App() {
 	}
 
 	return (
-	  <>
-		<PeopleList data={contacts} deletePerson={deletePerson}/>
-		<AddPersonForm addPerson={addPerson}/>
-	  </>
+		<div className="b-none shadow rounded-lg card w-auto p-3 m-0">
+			<PeopleList data={contacts} deletePerson={deletePerson}/>
+			<AddPersonForm addPerson={addPerson}/>
+		</div>
 	);
 }

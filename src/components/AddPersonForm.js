@@ -10,10 +10,11 @@ export function AddPersonForm(props) {
 	**submit parent addPerson function is called with an object data with the
 	**same structure.
 	*/
-	const onSubmit = data => {
+	const onSubmit = (data, e) => {
 		if (data.name !== "" && data.tel !== "") {
 			props.addPerson(data);
 		}
+		e.target.reset();
 	}
 
 	return (
@@ -27,6 +28,7 @@ export function AddPersonForm(props) {
 					className="w-full input hover-up border rounded-xl text-l align-center w-auto m p-1"
 					name="name"
 					ref={register}
+					defaultValue=""
 				/>
 				<input
 					type="text"
@@ -34,6 +36,7 @@ export function AddPersonForm(props) {
 					className="w-full input hover-up border rounded-xl text-l align-center w-auto m p-1"
 					name="tel"
 					ref={register}
+					defaultValue=""
 				/>
 				<button
 					className="btn hover-up rounded-xl shadow justify-end"
