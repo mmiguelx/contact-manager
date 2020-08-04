@@ -2,7 +2,7 @@ import React from 'react';
 import '../makeup/makeup.scss'
 
 export function PeopleList(props) {
-	//The props data is copied and sorted by name
+	//Contacts is passed by props then is copied and sorted by name
 	const arr = [...props.data]
 		.sort((a,b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1);
 
