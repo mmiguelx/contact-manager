@@ -17,6 +17,6 @@ Planned features:
   <li>More data to collect from user (name, phone, birthday...)</li>
   <li>Some kind of link to Vizum</li>
   <li>Database backend</li>
-  <li>Modify contact view, something more appeling</li>
-  <li>Change the contact list for a table or something more organized</li>
+  <li>Dinamic contact card</li>
+  <li>Add contact form open by a button</li>
 </ul>
