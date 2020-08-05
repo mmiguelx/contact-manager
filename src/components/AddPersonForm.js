@@ -18,14 +18,14 @@ export function AddPersonForm(props) {
 	}
 
 	return (
-		<div className="flex w-full m-1 border rounded-xl">
+		<div className="w-auto m-2 align-center flex">
 			<form
-				className="w-full card-body rounded-xl shadow flex justify-between"
+				className="w-full border card rounded-xl shadow justify-between a select p-2 m-1"
 				onSubmit={handleSubmit(onSubmit)}>
 				<input
 					type="text"
-					placeholder="Add new contact"
-					className="w-full input hover-up border rounded-xl text-l align-center w-auto m p-1"
+					placeholder="Name"
+					className="w-full input border rounded-xl text-l p-1 m"
 					name="name"
 					ref={register({required: true})}
 					defaultValue=""
@@ -33,7 +33,7 @@ export function AddPersonForm(props) {
 				<input
 					type="text"
 					placeholder="Phone Number"
-					className="w-full input hover-up border rounded-xl text-l align-center w-auto m p-1"
+					className="w-full input border rounded-xl text-l p-1 m"
 					name="tel"
 					ref={register({required: true})}
 					defaultValue=""
@@ -42,9 +42,12 @@ export function AddPersonForm(props) {
 					className="btn hover-up rounded-xl shadow justify-end"
 					type="submit">Add
 				</button>
+				<div className="w-full align-center">
+					{errors.name && "Name required "}
+					{errors.tel && "Phone required"}
+				</div>
 			</form>
-			{errors.name && "Name required"}
-			{errors.tel && "Phone required"}
 		</div>
 	);
+
 }

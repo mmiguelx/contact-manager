@@ -22,7 +22,7 @@ export function PeopleList(props) {
 	const listItems = arr
 		.map(val => (
 			<li
-				className="hover-up rounded-xl shadow  bg-white p m text-md"
+				className="hover-up rounded-xl shadow bg-white p my text-md"
 				key={val.tel}>
 				Name: {val.name} - Phone: {val.tel}
 				<button
@@ -32,7 +32,7 @@ export function PeopleList(props) {
 			</li>
 		));
 
-	return	<div className="card w-full rounded-xl shadow p m-y">
+	return	<div className="card w-auto rounded-xl shadow p m-2">
 				<ul>{listItems}</ul>
 			</div>
 }
