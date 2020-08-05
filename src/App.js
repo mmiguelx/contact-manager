@@ -44,7 +44,7 @@ export function App() {
 	}
 //b-none shadow rounded-lg card
 	return (
-		<div className="w-auto m-0">
+		<div className="w-full m-0">
 			<PeopleList data={contacts} deletePerson={deletePerson}/>
 			<AddPersonForm data={contacts} addPerson={addPerson}/>
 		</div>

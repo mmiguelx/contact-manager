@@ -43,8 +43,8 @@ export function AddPersonForm(props) {
 					type="submit">Add
 				</button>
 				<div className="w-full">
-					<p className="text-l color-danger">{errors.name && "Name required"}</p>
-					<p className="text-l color-danger">{errors.tel && "Phone required"}</p>
+					<p className="form-error">{errors.name && "Name required"}</p>
+					<p className="form-error">{errors.tel && "Phone required"}</p>
 				</div>
 			</form>
 		</div>
