@@ -4,6 +4,7 @@
 <p>Contributors: <a href=https://github.com/JavierCervilla>Javier Cervilla</a></p>
 
 Updates:
+<p>05/08/19 -> Added some styles with responsive features</p>
 <p>04/08/19 -> Sort alphabetically added, some error messages and code was commented</p>
 <p>03/08/19 -> Added multiple data storing.</p>
 <p>03/08/19 -> Added a "Delete" button right next to contact.</p>
@@ -16,7 +17,6 @@ Planned features:
   <li>More data to collect from user (name, phone, birthday...)</li>
   <li>Some kind of link to Vizum</li>
   <li>Database backend</li>
-  <li>Responsive webapp</li>
   <li>Modify contact view, something more appeling</li>
   <li>Change the contact list for a table or something more organized</li>
 </ul>

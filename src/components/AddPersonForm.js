@@ -39,12 +39,12 @@ export function AddPersonForm(props) {
 					defaultValue=""
 				/>
 				<button
-					className="btn hover-up rounded-xl shadow justify-end"
+					className="btn hover-up rounded-xl shadow justify-end m"
 					type="submit">Add
 				</button>
-				<div className="w-full align-center">
-					{errors.name && "Name required "}
-					{errors.tel && "Phone required"}
+				<div className="w-full">
+					<p className="text-l color-danger">{errors.name && "Name required"}</p>
+					<p className="text-l color-danger">{errors.tel && "Phone required"}</p>
 				</div>
 			</form>
 		</div>
