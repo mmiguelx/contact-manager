@@ -4,7 +4,7 @@
 <p>Contributors: <a href=https://github.com/JavierCervilla>Javier Cervilla</a></p>
 
 Updates:
-<p>05/08/19 -> Added some styles with responsive features</p>
+<p>05/08/19 -> Added some styles with responsive features (rework in progress)</p>
 <p>04/08/19 -> Sort alphabetically added, some error messages and code was commented</p>
 <p>03/08/19 -> Added multiple data storing.</p>
 <p>03/08/19 -> Added a "Delete" button right next to contact.</p>
