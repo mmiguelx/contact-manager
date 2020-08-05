@@ -20,7 +20,7 @@ export function AddPersonForm(props) {
 	return (
 		<div className="w-auto m-2 align-center flex">
 			<form
-				className="w-full border card rounded-xl shadow justify-between a select p-2 m-1"
+				className="w-full border card rounded-xl shadow align-center select p-2 m-1"
 				onSubmit={handleSubmit(onSubmit)}>
 				<input
 					type="text"
