@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './makeup/makeup.scss';
-import {AddPersonForm} from './components/AddPersonForm';
-import {PeopleList} from './components/PeopleList';
+import '../node_modules/uikit/dist/css/uikit.css'
+import '../node_modules/uikit/dist/js/uikit'
+import { AddPersonForm } from './components/AddPersonForm';
+import { PeopleList } from './components/PeopleList';
 
 export function App() {
-	const [contacts,setContacts] = useState([{name: "", tel: ""}]);
+	const [contacts, setContacts] = useState([{ id: 0, name: "", tel: "", title: "", email: "" }]);
 
 	//The first useEffect is used to check if there's any data on localStorage.
 	useEffect(() => {
@@ -28,7 +29,7 @@ export function App() {
 	*/
 	function addPerson(person) {
 		setContacts([...contacts,
-		{name: person.name, tel: person.tel}]);
+		{ id: person.id, name: person.name, tel: person.tel, title: person.title, email: person.email}]);
 	}
 
 	/*
@@ -36,17 +37,17 @@ export function App() {
 	**in the variable temp a copy is made, using the index of the element, this
 	**is removed and then contacts is set again with the modified temp.
 	*/
-	function deletePerson(tel) {
+	function deletePerson(id) {
 		var temp = [...contacts];
-		var key = temp.findIndex(obj => obj.tel === tel);
+		var key = temp.findIndex( (x) => x.id == id);
 		temp.splice(key, 1);
 		setContacts([...temp]);
 	}
-//b-none shadow rounded-lg card
+	//b-none shadow rounded-lg card
 	return (
-		<div className="w-full m-0">
-			<PeopleList data={contacts} deletePerson={deletePerson}/>
-			<AddPersonForm data={contacts} addPerson={addPerson}/>
+		<div className="">
+			<PeopleList data={contacts} deletePerson={deletePerson} />
+			<AddPersonForm data={contacts} addPerson={addPerson} />
 		</div>
 	);
 }
