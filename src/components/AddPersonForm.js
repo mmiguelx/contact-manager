@@ -12,18 +12,9 @@ export function AddPersonForm(props) {
 	**the same structure.
 	*/
 	const onSubmit = (data, e) => {
-		if (props.data.findIndex(obj => obj.tel === data.tel) === -1) {
-			if(props.data.length > 0){
-				let maxC = Math.max(...props.data.map(o=>o.id));
-				data.id = maxC + 1;
-			}
-			else {
-				data.id = 1;
-			}
-			props.addPerson(data);
-		}
-		e.target.reset();
-	}
+		props.addPerson(data);
+  }
+  
 	function BackToMenu() {
 		ReactDOM.render(
 			<App />,
