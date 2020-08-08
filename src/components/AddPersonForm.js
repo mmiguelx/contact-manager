@@ -1,5 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import ReactDOM from 'react-dom';
+import {App} from '../App'
 
 export function AddPersonForm(props) {
 	const { register, handleSubmit, errors } = useForm();
@@ -21,6 +23,12 @@ export function AddPersonForm(props) {
 			props.addPerson(data);
 		}
 		e.target.reset();
+	}
+	function BackToMenu() {
+		ReactDOM.render(
+			<App />,
+		  document.getElementById('root')
+		);
 	}
 
 	return (
@@ -77,6 +85,7 @@ export function AddPersonForm(props) {
 					</div>
 				</fieldset>
 			</form>
+			<button onClick={BackToMenu}>back</button>
 		</div>
 	);
 

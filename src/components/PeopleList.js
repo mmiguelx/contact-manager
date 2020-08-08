@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import {App} from '../App'
 
 export function PeopleList(props) {
 	//Contacts is passed by props then is copied and sorted by name
@@ -12,6 +14,13 @@ export function PeopleList(props) {
 	*/
 	function handleClick(e) {
 		props.deletePerson(e.target.value);
+	}
+
+	function BackToMenu() {
+		ReactDOM.render(
+			<App />,
+		  document.getElementById('root')
+		);
 	}
 
 	/*
@@ -86,6 +95,7 @@ export function PeopleList(props) {
 			<ul
 				className="uk-slider-nav uk-dotnav uk-flex-center uk-margin">
 			</ul>
+			<button onClick={BackToMenu}>back</button>
 		</div>
 	);
 }
