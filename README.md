@@ -1,9 +1,9 @@
 <h1># contact-manager</h1>
 
 <p>This is a contact manager webapp guided by SoloLearn React course on his base, now working on put more features in the project with a bit more functionality.</p>
-<p>Contributors:
-<a href=https://github.com/Chokolove>Carlos Llamosas</a>
-<a href=https://github.com/JavierCervilla>Javier Cervilla</a></p>
+<p>Contributors:<ul>
+<li><a href=https://github.com/Chokolove>Carlos Llamosas</a></li>
+<li><a href=https://github.com/JavierCervilla>Javier Cervilla</a></li></ul></p>
 
 Updates:
 <p>08/08/19 -> Complete visual rework and added features (expanded form, and some error handler) by <a href=https://github.com/Chokolove>Carlos Llamosas</a>, new contributor added to project.</p>
