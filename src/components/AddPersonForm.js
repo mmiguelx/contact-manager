@@ -1,6 +1,5 @@
 import React from 'react';
-import '../makeup/makeup.scss';
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 export function AddPersonForm(props) {
 	const { register, handleSubmit, errors } = useForm();
@@ -12,39 +11,73 @@ export function AddPersonForm(props) {
 	*/
 	const onSubmit = (data, e) => {
 		if (props.data.findIndex(obj => obj.tel === data.tel) === -1) {
+			if(props.data.length > 0){
+				let maxC = Math.max(...props.data.map(o=>o.id));
+				data.id = maxC + 1;
+			}
+			else {
+				data.id = 1;
+			}
 			props.addPerson(data);
 		}
 		e.target.reset();
 	}
 
 	return (
-		<div className="flex w-full m-1 border rounded-xl">
-			<form
-				className="w-full card-body rounded-xl shadow flex justify-between"
-				onSubmit={handleSubmit(onSubmit)}>
-				<input
-					type="text"
-					placeholder="Add new contact"
-					className="w-full input hover-up border rounded-xl text-l align-center w-auto m p-1"
-					name="name"
-					ref={register({required: true})}
-					defaultValue=""
-				/>
-				<input
-					type="text"
-					placeholder="Phone Number"
-					className="w-full input hover-up border rounded-xl text-l align-center w-auto m p-1"
-					name="tel"
-					ref={register({required: true})}
-					defaultValue=""
-				/>
-				<button
-					className="btn hover-up rounded-xl shadow justify-end"
-					type="submit">Add
-				</button>
+		<div className="uk-container uk-width-1-2 uk-margin-top">
+			<form className="" onSubmit={handleSubmit(onSubmit)}>
+				<fieldset className="uk-fieldset">
+					<legend className="uk-legend">
+						Registro
+					</legend>
+					<div className="uk-margin">
+						<input
+							className="uk-input"
+							type="text"
+							placeholder="Name"
+							name="name"
+							ref={register({ required: true })}
+							defaultValue=""
+						/>
+					</div>
+					<div className="uk-margin">
+						<input
+							className="uk-input"
+							type="text"
+							placeholder="Title"
+							name="title"
+							ref={register({ required: false })}
+							defaultValue=""
+						/>
+					</div>
+					<div className="uk-margin">
+						<input
+							className="uk-input"
+							type="text"
+							placeholder="Number"
+							name="tel"
+							ref={register({ required: true })}
+							defaultValue=""
+						/>
+					</div>
+					<div className="uk-margin">
+						<input
+							className="uk-input"
+							type="email"
+							placeholder="Email"
+							name="email"
+							ref={register({ required: false })}
+							defaultValue="" />
+					</div>
+					<div className="uk-flex uk-flex-center">
+						<button
+							className="uk-button uk-button-primary"
+							type="submit">Add
+						</button>
+					</div>
+				</fieldset>
 			</form>
-			{errors.name && "Name required"}
-			{errors.tel && "Phone required"}
 		</div>
 	);
+
 }
