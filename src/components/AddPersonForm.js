@@ -1,5 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import ReactDOM from 'react-dom';
+import {App} from '../App'
 
 export function AddPersonForm(props) {
 	const { register, handleSubmit, errors } = useForm();
@@ -11,6 +13,13 @@ export function AddPersonForm(props) {
 	*/
 	const onSubmit = (data, e) => {
 		props.addPerson(data);
+  }
+  
+	function BackToMenu() {
+		ReactDOM.render(
+			<App />,
+		  document.getElementById('root')
+		);
 	}
 
 	return (
@@ -27,7 +36,8 @@ export function AddPersonForm(props) {
 							placeholder="Name"
 							name="name"
 							ref={register({ required: true })}
-							defaultValue="" />
+							defaultValue=""
+						/>
 					</div>
 					<div className="uk-margin">
 						<input
@@ -36,7 +46,8 @@ export function AddPersonForm(props) {
 							placeholder="Title"
 							name="title"
 							ref={register({ required: false })}
-							defaultValue="" />
+							defaultValue=""
+						/>
 					</div>
 					<div className="uk-margin">
 						<input
@@ -44,8 +55,9 @@ export function AddPersonForm(props) {
 							type="text"
 							placeholder="Number"
 							name="tel"
-							ref={register({ required: false })}
-							defaultValue="" />
+							ref={register({ required: true })}
+							defaultValue=""
+						/>
 					</div>
 					<div className="uk-margin">
 						<input
@@ -57,12 +69,14 @@ export function AddPersonForm(props) {
 							defaultValue="" />
 					</div>
 					<div className="uk-flex uk-flex-center">
-						<button className="uk-button uk-button-primary" type="submit">
-							Add
+						<button
+							className="uk-button uk-button-primary"
+							type="submit">Add
 						</button>
 					</div>
 				</fieldset>
 			</form>
+			<button onClick={BackToMenu}>back</button>
 		</div>
 	);
 

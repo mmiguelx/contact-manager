@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import {App} from '../App'
 
 export function PeopleList(props) {
 	//Contacts is passed by props then is copied and sorted by name
@@ -14,6 +16,13 @@ export function PeopleList(props) {
 		props.deletePerson(e.target.value);
 	}
 
+	function BackToMenu() {
+		ReactDOM.render(
+			<App />,
+		  document.getElementById('root')
+		);
+	}
+
 	/*
 	**listItems iterates on data, sets the key of li tag and button value with
 	**the phone number of the element and renders every element.
@@ -24,9 +33,13 @@ export function PeopleList(props) {
 				<div className="uk-card uk-card-default uk-margin-top uk-margin-left uk-margin-right uk-margin-bottom" >
 					<div className="uk-card-header">
 						<div className="">
-							<h3 className="uk-card-title uk-margin-remove-bottom">{val.name}</h3>
-							<p className="uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">{val.title}</p>
-							<p className="uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">{val._id}</p>
+							<h3
+								lassName="uk-card-title uk-margin-remove-bottom">
+								{val.name}
+							</h3>
+							<p className="uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">
+								{val.title}
+							</p>
 						</div>
 					</div>
 					<div className="uk-card-body">
@@ -34,17 +47,28 @@ export function PeopleList(props) {
 							<div className="uk-margin">
 								<label className="uk-form-label" htmlFor="tel">
 									Number:
-							</label>
+								</label>
 								<div className="uk-form-controls">
-									<input className="uk-input" id="tel" type="text" placeholder={val.tel} disabled />
+									<input
+										className="uk-input"
+										id="tel"
+										type="text"
+										placeholder={val.tel} disabled
+									/>
 								</div>
 							</div>
 							<div className="">
 								<label className="uk-form-label" htmlFor="email">
 									Email:
-							</label>
+								</label>
 								<div className="uk-form-controls">
-									<input className="uk-input" id="email" type="text" placeholder={val.email} disabled />
+									<input
+										className="uk-input"
+										id="email"
+										type="text"
+										placeholder={val.email}
+										disabled
+									/>
 								</div>
 							</div>
 						</form>
@@ -54,7 +78,7 @@ export function PeopleList(props) {
 							className="uk-button uk-button-danger"
 							value={val._id}
 							onClick={handleClick}>Borrar
-				</button>
+						</button>
 					</div>
 				</div>
 			</li>
@@ -63,11 +87,15 @@ export function PeopleList(props) {
 	return (
 		<div data-uk-slider>
 			<div className="uk-slider-container">
-				<ul className="uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m ">
+				<ul
+					className="uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m ">
 					{listItems}
 				</ul>
 			</div>
-			<ul className="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+			<ul
+				className="uk-slider-nav uk-dotnav uk-flex-center uk-margin">
+			</ul>
+			<button onClick={BackToMenu}>back</button>
 		</div>
 	);
 }

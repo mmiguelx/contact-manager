@@ -49,10 +49,26 @@ export function App() {
 	useEffect(() => {
 		getContacts()
 	}, []);
+
+	function Render(e) {
+		if (e.target.value === "Add") {
+			ReactDOM.render(
+				<AddPersonForm data={contacts} addPerson={addPerson}/>,
+			  document.getElementById('root')
+			);
+		}
+		else {
+			ReactDOM.render(
+				<PeopleList data={contacts} deletePerson={deletePerson}/>,
+			  document.getElementById('root')
+			);
+		}
+	}
+
 	return (
-		<div className="">
-			<PeopleList data={contacts} deletePerson={deletePerson} />
-			<AddPersonForm data={contacts} addPerson={addPerson} />
+		<div>
+			<button onClick={Render} value="Add">Add</button>
+			<button onClick={Render} value="List">List</button>
 		</div>
-	);
+	)
 }
