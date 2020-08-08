@@ -78,8 +78,7 @@ export function PeopleList(props) {
 	return (
 		<div data-uk-slider>
 			<div className="uk-slider-container">
-				<ul
-					className="uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m ">
+				<ul className="uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m ">
 					{listItems}
 				</ul>
 			</div>
