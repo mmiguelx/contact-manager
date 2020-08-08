@@ -6,7 +6,7 @@
 <li><a href=https://github.com/JavierCervilla>Javier Cervilla</a></li></ul></p>
 
 Updates:
-<p>08/08/19 -> Complete visual rework and added features (expanded form, and some error handler) by <a href=https://github.com/Chokolove>Carlos Llamosas</a>, new contributor added to project.</p>
+<p>08/08/19 -> Complete visual rework and added features (expanded form, and some error handler, makeup miniframework was deleted and added uikit) by <a href=https://github.com/Chokolove>Carlos Llamosas</a>, new contributor added to project.</p>
 <p>05/08/19 -> Added some styles with responsive features</p>
 <p>04/08/19 -> Sort alphabetically added, some error messages and code was commented</p>
 <p>03/08/19 -> Added multiple data storing.</p>
