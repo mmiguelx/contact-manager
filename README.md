@@ -25,4 +25,4 @@ Planned features:
 </ul>
 
 Known Issues:
-<ul><li>Sometimes contacts duplicated, waiting for backend database for a possible solution</li></ul>
+<ul><li>Sometimes contacts duplicate, waiting for backend database for a possible solution</li></ul>
