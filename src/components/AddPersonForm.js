@@ -31,7 +31,7 @@ export function AddPersonForm(props) {
 					defaultValue=""
 				/>
 				<input
-					type="text"
+					type="tel"
 					placeholder="Phone Number"
 					className="full-w m rounded-xl shadow card-body"
 					name="tel"

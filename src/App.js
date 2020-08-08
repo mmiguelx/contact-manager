@@ -42,7 +42,7 @@ export function App() {
 		temp.splice(key, 1);
 		setContacts([...temp]);
 	}
-//b-none shadow rounded-lg card
+
 	return (
 		<div className="w-full m-0">
 			<PeopleList data={contacts} deletePerson={deletePerson}/>
