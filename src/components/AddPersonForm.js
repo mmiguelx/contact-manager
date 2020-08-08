@@ -10,12 +10,6 @@ export function AddPersonForm(props) {
 	**the same structure.
 	*/
 	const onSubmit = (data, e) => {
-		if(props.data.length > 0){
-			let maxC = Math.max(...props.data.map(o=>o.id));
-			data.id = maxC + 1
-		} else {
-			data.id = 1
-		}
 		props.addPerson(data);
 	}
 

@@ -20,12 +20,13 @@ export function PeopleList(props) {
 	*/
 	const listItems = arr
 		.map(val => (
-			<li key={val.id}>
+			<li key={val._id}>
 				<div className="uk-card uk-card-default uk-margin-top uk-margin-left uk-margin-right uk-margin-bottom" >
 					<div className="uk-card-header">
 						<div className="">
 							<h3 className="uk-card-title uk-margin-remove-bottom">{val.name}</h3>
 							<p className="uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">{val.title}</p>
+							<p className="uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">{val._id}</p>
 						</div>
 					</div>
 					<div className="uk-card-body">
@@ -51,7 +52,7 @@ export function PeopleList(props) {
 					<div className="uk-card-footer">
 						<button
 							className="uk-button uk-button-danger"
-							value={val.id}
+							value={val._id}
 							onClick={handleClick}>Borrar
 				</button>
 					</div>
