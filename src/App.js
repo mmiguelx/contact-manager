@@ -43,7 +43,7 @@ export function App() {
 		temp.splice(key, 1);
 		setContacts([...temp]);
 	}
-  
+
 	return (
 		<div className="">
 			<PeopleList data={contacts} deletePerson={deletePerson} />
