@@ -39,7 +39,7 @@ export function App() {
 	*/
 	function deletePerson(id) {
 		var temp = [...contacts];
-		var key = temp.findIndex( (x) => x.id == id);
+		var key = temp.findIndex( (x) => x.id === id);
 		temp.splice(key, 1);
 		setContacts([...temp]);
 	}

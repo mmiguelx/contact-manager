@@ -10,13 +10,17 @@ export function AddPersonForm(props) {
 	**the same structure.
 	*/
 	const onSubmit = (data, e) => {
-		if(props.data.length > 0){
-			let maxC = Math.max(...props.data.map(o=>o.id));
-			data.id = maxC + 1
-		} else {
-			data.id = 1
+		if (props.data.findIndex(obj => obj.tel === data.tel) === -1) {
+			if(props.data.length > 0){
+				let maxC = Math.max(...props.data.map(o=>o.id));
+				data.id = maxC + 1;
+			}
+			else {
+				data.id = 1;
+			}
+			props.addPerson(data);
 		}
-		props.addPerson(data);
+		e.target.reset();
 	}
 
 	return (
@@ -33,7 +37,8 @@ export function AddPersonForm(props) {
 							placeholder="Name"
 							name="name"
 							ref={register({ required: true })}
-							defaultValue="" />
+							defaultValue=""
+						/>
 					</div>
 					<div className="uk-margin">
 						<input
@@ -42,7 +47,8 @@ export function AddPersonForm(props) {
 							placeholder="Title"
 							name="title"
 							ref={register({ required: false })}
-							defaultValue="" />
+							defaultValue=""
+						/>
 					</div>
 					<div className="uk-margin">
 						<input
@@ -50,8 +56,9 @@ export function AddPersonForm(props) {
 							type="text"
 							placeholder="Number"
 							name="tel"
-							ref={register({ required: false })}
-							defaultValue="" />
+							ref={register({ required: true })}
+							defaultValue=""
+						/>
 					</div>
 					<div className="uk-margin">
 						<input
@@ -63,8 +70,9 @@ export function AddPersonForm(props) {
 							defaultValue="" />
 					</div>
 					<div className="uk-flex uk-flex-center">
-						<button className="uk-button uk-button-primary" type="submit">
-							Add
+						<button
+							className="uk-button uk-button-primary"
+							type="submit">Add
 						</button>
 					</div>
 				</fieldset>
