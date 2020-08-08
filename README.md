@@ -23,3 +23,6 @@ Planned features:
   <li>Dinamic contact card</li>
   <li>Add contact form open by a button</li>
 </ul>
+
+Known Issues:
+<ul><li>Sometimes contacts duplicated, waiting for backend database for a possible solution</li></ul>
