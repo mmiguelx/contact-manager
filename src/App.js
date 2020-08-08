@@ -12,7 +12,6 @@ export function App() {
 
 	//React and ajax, we call the api to get all the info in the db.
 	function getContacts() {
-		console.log("")
 		axios.get("http://127.0.0.1:3000/api/contacts")
 			.then((res) => {
 				setIsLoaded(true);
@@ -42,6 +41,7 @@ export function App() {
 		axios.delete("http://127.0.0.1:3000/api/contacts/" + id)
 			.then((res) => {
 				console.log(res)
+				getContacts();
 			}).catch((err) => {
 				console.log(err)
 			})
