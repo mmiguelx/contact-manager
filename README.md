@@ -7,7 +7,7 @@
 
 Updates:
 <p>09/08/19 -> Sectioned app</p>
-<p>09/08/19 -> Backend database done on MongoDB, in order to get the info from database <a href=https://github.com/Chokolove>Carlos Llamosas</a> created an API (Repo: <a href=https://github.com/Chokolove/contact-managerAPI>contact-managerAPI).</p>
+<p>09/08/19 -> Backend database done on MongoDB, in order to get the info from database <a href=https://github.com/Chokolove>Carlos Llamosas</a> created an API (Repo: <a href=https://github.com/Chokolove/contact-managerAPI>contact-managerAPI</a>).</p>
 <p>08/08/19 -> Complete visual rework and added features (expanded form, and some error handler, makeup miniframework was deleted and added uikit) by <a href=https://github.com/Chokolove>Carlos Llamosas</a>, new contributor added to project.</p>
 <p>05/08/19 -> Added some styles with responsive features</p>
 <p>04/08/19 -> Sort alphabetically added, some error messages and code was commented</p>
