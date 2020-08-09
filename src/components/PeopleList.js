@@ -1,21 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import ReactDOM from 'react-dom';
 import {App} from '../App'
 
-export function PeopleList(props) {
-	//Contacts is passed by props then is copied and sorted by name
-	const arr = [...props.data]
+export function PeopleList() {
+	const [error, setError] = useState(null);
+	const [isLoaded, setIsLoaded] = useState(false);
+	const [contacts, setContacts] = useState([{ _id: 0, name: "", tel: "", title: "", email: "" }]);
+
+	//Contacts is copied and sorted by name
+	const arr = [...contacts]
 		.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1);
 
 	/*
-	**The button from listItems holds the phone number value of the element, the
-	**event is triggered and deletePerson from parent component is called with
-	**index as parameter.
+	**The button from listItems holds id of the element from database, the
+	**event is triggered and deletePerson is called with index as parameter
 	*/
 	function handleClick(e) {
-		props.deletePerson(e.target.value);
+		deletePerson(e.target.value);
 	}
 
+	//We call the api to get all the info on database.
+	function getContacts() {
+		axios.get("http://127.0.0.1:3001/api/contacts")
+			.then((res) => {
+				setIsLoaded(true);
+				setContacts(res.data);
+				console.log(isLoaded);
+			})
+			.catch((err) => {
+				setIsLoaded(true);
+				setError(err);
+				console.log(error);
+			})
+	}
+
+	//We call the api to delete the info on database.
+	function deletePerson(id) {
+		axios.delete("http://127.0.0.1:3001/api/contacts/" + id)
+			.then((res) => {
+				console.log(res)
+				getContacts();
+			}).catch((err) => {
+				console.log(err)
+			})
+	}
+
+	//On render call getContacts in order to get the data from the database.
+	useEffect(() => {
+        getContacts()
+    }, []);
+
+	//Render the menu when the button event is called.
 	function BackToMenu() {
 		ReactDOM.render(
 			<App />,
@@ -23,10 +59,7 @@ export function PeopleList(props) {
 		);
 	}
 
-	/*
-	**listItems iterates on data, sets the key of li tag and button value with
-	**the phone number of the element and renders every element.
-	*/
+	//listItems iterates on data, and renders every element.
 	const listItems = arr
 		.map(val => (
 			<li key={val._id}>
@@ -34,7 +67,7 @@ export function PeopleList(props) {
 					<div className="uk-card-header">
 						<div className="">
 							<h3
-								lassName="uk-card-title uk-margin-remove-bottom">
+								className="uk-card-title uk-margin-remove-bottom">
 								{val.name}
 							</h3>
 							<p className="uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">
