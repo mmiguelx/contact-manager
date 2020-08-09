@@ -5,7 +5,7 @@ import {App} from '../App';
 import axios from 'axios';
 
 export function AddPersonForm() {
-	const { register, handleSubmit, errors } = useForm();
+	const { register, handleSubmit } = useForm();
 	// const [error, setError] = useState(null);
 	// const [isLoaded, setIsLoaded] = useState(false);
 
@@ -15,14 +15,7 @@ export function AddPersonForm() {
 	*/
 	const onSubmit = (data, e) => {
 		addPerson(data);
-	}
-
-	//Render the menu when the button event is called.
-	function BackToMenu() {
-		ReactDOM.render(
-			<App />,
-		  document.getElementById('root')
-		);
+		e.target.reset();
 	}
 
 	//The api is called to add info on database.
@@ -39,9 +32,17 @@ export function AddPersonForm() {
 		})
 	}
 
+	//Render the menu when the button event is called.
+	function BackToMenu() {
+		ReactDOM.render(
+			<App />,
+		  document.getElementById('root')
+		);
+	}
+
 	return (
 		<div className="uk-container uk-width-1-2 uk-margin-top">
-			<form className="" onSubmit={handleSubmit(onSubmit)}>
+			<form onSubmit={handleSubmit(onSubmit)}>
 				<fieldset className="uk-fieldset">
 					<legend className="uk-legend">
 						Registro
@@ -96,5 +97,4 @@ export function AddPersonForm() {
 			<button onClick={BackToMenu}>back</button>
 		</div>
 	);
-
 }

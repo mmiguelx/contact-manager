@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import {App} from '../App'
@@ -13,15 +13,10 @@ export function PeopleList() {
 		.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1);
 
 	/*
-	**The button from listItems holds id of the element from database, the
-	**event is triggered and deletePerson is called with index as parameter
+	**We call the api to get all the info on databas with useCallback to avoid
+	**unnecesary multiple rendering.
 	*/
-	function handleClick(e) {
-		deletePerson(e.target.value);
-	}
-
-	//We call the api to get all the info on database.
-	function getContacts() {
+	const getContacts = useCallback(() => {
 		axios.get("http://127.0.0.1:3001/api/contacts")
 			.then((res) => {
 				setIsLoaded(true);
@@ -33,6 +28,14 @@ export function PeopleList() {
 				setError(err);
 				console.log(error);
 			})
+	}, [error, isLoaded]);
+
+	/*
+	**The button from listItems holds id of the element from database, the
+	**event is triggered and deletePerson is called with index as parameter
+	*/
+	function handleClick(e) {
+		deletePerson(e.target.value);
 	}
 
 	//We call the api to delete the info on database.
@@ -48,8 +51,8 @@ export function PeopleList() {
 
 	//On render call getContacts in order to get the data from the database.
 	useEffect(() => {
-        getContacts()
-    }, []);
+		getContacts()
+    }, [getContacts]);
 
 	//Render the menu when the button event is called.
 	function BackToMenu() {
