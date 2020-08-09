@@ -1,26 +1,42 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
+import ReactDOM from 'react-dom';
+import {App} from '../App';
+import axios from 'axios';
 
-export function AddPersonForm(props) {
+export function AddPersonForm() {
 	const { register, handleSubmit, errors } = useForm();
+	// const [error, setError] = useState(null);
+	// const [isLoaded, setIsLoaded] = useState(false);
 
 	/*
-	**onSubmit gets the data from ref in the form, if the telephone number is
-	**unique the parent addPerson function is called with an object data with
-	**the same structure.
+	**onSubmit gets the data from ref in the form, addPerson function is called
+	**with an object data with the same structure.
 	*/
 	const onSubmit = (data, e) => {
-		if (props.data.findIndex(obj => obj.tel === data.tel) === -1) {
-			if(props.data.length > 0){
-				let maxC = Math.max(...props.data.map(o=>o.id));
-				data.id = maxC + 1;
-			}
-			else {
-				data.id = 1;
-			}
-			props.addPerson(data);
-		}
-		e.target.reset();
+		addPerson(data);
+	}
+
+	//Render the menu when the button event is called.
+	function BackToMenu() {
+		ReactDOM.render(
+			<App />,
+		  document.getElementById('root')
+		);
+	}
+
+	//The api is called to add info on database.
+	function addPerson(person) {
+		axios.post("http://127.0.0.1:3001/api/contacts", {
+			name: person.name,
+			tel: person.tel,
+			title: person.title,
+			email: person.email
+		}).then((res) => {
+			console.log(res);
+		}).catch((err) => {
+			console.log(err);
+		})
 	}
 
 	return (
@@ -77,6 +93,7 @@ export function AddPersonForm(props) {
 					</div>
 				</fieldset>
 			</form>
+			<button onClick={BackToMenu}>back</button>
 		</div>
 	);
 
