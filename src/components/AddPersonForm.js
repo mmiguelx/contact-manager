@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import ReactDOM from 'react-dom';
-import {App} from '../App';
+import { App } from '../App';
 import axios from 'axios';
 
 export function AddPersonForm() {
@@ -16,11 +16,12 @@ export function AddPersonForm() {
 	const onSubmit = (data, e) => {
 		addPerson(data);
 		e.target.reset();
+		BackToMenu();
 	}
 
 	//The api is called to add info on database.
 	function addPerson(person) {
-		axios.post("http://127.0.0.1:3001/api/contacts", {
+		axios.post("http://127.0.0.1:3000/api/contacts", {
 			name: person.name,
 			tel: person.tel,
 			title: person.title,
@@ -36,7 +37,7 @@ export function AddPersonForm() {
 	function BackToMenu() {
 		ReactDOM.render(
 			<App />,
-		  document.getElementById('root')
+			document.getElementById('root')
 		);
 	}
 
@@ -89,12 +90,18 @@ export function AddPersonForm() {
 					<div className="uk-flex uk-flex-center">
 						<button
 							className="uk-button uk-button-primary"
-							type="submit">Add
+							type="submit">
+							Guardar
+						</button>
+						<button
+							className="uk-button uk-button-danger uk-margin-left"
+							type="button"
+							onClick={BackToMenu}>
+							Regresar
 						</button>
 					</div>
 				</fieldset>
 			</form>
-			<button onClick={BackToMenu}>back</button>
 		</div>
 	);
 }
