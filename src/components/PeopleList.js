@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import { AddPersonForm } from './AddPersonForm';
 import ReactDOM from 'react-dom';
-import {App} from '../App'
+import axios from 'axios';
 
 export function PeopleList() {
 	const [error, setError] = useState(null);
@@ -17,11 +17,11 @@ export function PeopleList() {
 	**unnecesary multiple rendering.
 	*/
 	const getContacts = useCallback(() => {
-		axios.get("http://127.0.0.1:3001/api/contacts")
+		axios.get("http://127.0.0.1:3000/api/contacts")
 			.then((res) => {
 				setIsLoaded(true);
 				setContacts(res.data);
-				console.log(isLoaded);
+				console.log("nani? "+isLoaded);
 			})
 			.catch((err) => {
 				setIsLoaded(true);
@@ -40,7 +40,7 @@ export function PeopleList() {
 
 	//We call the api to delete the info on database.
 	function deletePerson(id) {
-		axios.delete("http://127.0.0.1:3001/api/contacts/" + id)
+		axios.delete("http://127.0.0.1:3000/api/contacts/" + id)
 			.then((res) => {
 				console.log(res)
 				getContacts();
@@ -52,13 +52,12 @@ export function PeopleList() {
 	//On render call getContacts in order to get the data from the database.
 	useEffect(() => {
 		getContacts()
-    }, [getContacts]);
+	}, []);
 
-	//Render the menu when the button event is called.
-	function BackToMenu() {
+	function Render(e) {
 		ReactDOM.render(
-			<App />,
-		  document.getElementById('root')
+			<AddPersonForm />,
+			document.getElementById('root')
 		);
 	}
 
@@ -66,18 +65,18 @@ export function PeopleList() {
 	const listItems = arr
 		.map(val => (
 			<li key={val._id}>
-				<div className="uk-card uk-card-default uk-margin-top uk-margin-left uk-margin-right uk-margin-bottom" >
-					<div className="uk-card-header">
-						<div className="">
-							<h3
-								className="uk-card-title uk-margin-remove-bottom">
-								{val.name}
-							</h3>
-							<p className="uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">
-								{val.title}
-							</p>
-						</div>
+				<a className="uk-accordion-title" href="#">
+					<div className="">
+						<h3
+							className="uk-card-title uk-margin-remove-bottom">
+							{val.name}
+						</h3>
+						<p className="uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">
+							{val.title}
+						</p>
 					</div>
+				</a>
+				<div className="uk-accordion-content uk-margin-remove">
 					<div className="uk-card-body">
 						<form className="uk-margin">
 							<div className="uk-margin">
@@ -121,15 +120,17 @@ export function PeopleList() {
 		));
 
 	return (
-		<div data-uk-slider>
-			<div className="uk-slider-container">
-				<ul className="uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m ">
+		<div>
+			<div className="uk-container uk-width-1-2 uk-margin-large-top">
+				<ul data-uk-accordion>
 					{listItems}
 				</ul>
+				<button
+					className="uk-button uk-button-primary"
+					onClick={Render}>
+					Nuevo
+				</button>
 			</div>
-			<ul
-				className="uk-slider-nav uk-dotnav uk-flex-center uk-margin">
-			</ul>
 			<button
 				className="uk-button uk-position-bottom-right uk-margin-small-right uk-margin-small-bottom"
 				onClick={BackToMenu}>+
