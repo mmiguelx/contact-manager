@@ -131,6 +131,10 @@ export function PeopleList() {
 					Nuevo
 				</button>
 			</div>
+			<button
+				className="uk-button uk-position-bottom-right uk-margin-small-right uk-margin-small-bottom"
+				onClick={BackToMenu}>+
+			</button>
 		</div>
 	);
 }
