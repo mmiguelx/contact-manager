@@ -130,7 +130,10 @@ export function PeopleList() {
 			<ul
 				className="uk-slider-nav uk-dotnav uk-flex-center uk-margin">
 			</ul>
-			<button onClick={BackToMenu}>back</button>
+			<button
+				className="uk-button uk-position-bottom-right uk-margin-small-right uk-margin-small-bottom"
+				onClick={BackToMenu}>+
+			</button>
 		</div>
 	);
 }
