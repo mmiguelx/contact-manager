@@ -17,7 +17,7 @@ export function PeopleList() {
 	**unnecesary multiple rendering.
 	*/
 	const getContacts = useCallback(() => {
-		axios.get("http://127.0.0.1:3000/api/contacts")
+		axios.get(process.env.REACT_APP_DB_URL)
 			.then((res) => {
 				setIsLoaded(true);
 				setContacts(res.data);
@@ -40,7 +40,7 @@ export function PeopleList() {
 
 	//We call the api to delete the info on database.
 	function deletePerson(id) {
-		axios.delete("http://127.0.0.1:3000/api/contacts/" + id)
+		axios.delete(process.env.REACT_APP_DB_URL + id)
 			.then((res) => {
 				console.log(res)
 				getContacts();
@@ -54,7 +54,7 @@ export function PeopleList() {
 		getContacts()
 	}, []);
 
-	function Render(e) {
+	function Render() {
 		ReactDOM.render(
 			<AddPersonForm />,
 			document.getElementById('root')
@@ -118,7 +118,10 @@ export function PeopleList() {
 				</div>
 			</li>
 		));
-
+		/*	<button
+				className="uk-button uk-position-bottom-right uk-margin-small-right uk-margin-small-bottom"
+				onClick={BackToMenu}>+
+			</button>*/
 	return (
 		<div>
 			<div className="uk-container uk-width-1-2 uk-margin-large-top">
@@ -131,10 +134,7 @@ export function PeopleList() {
 					Nuevo
 				</button>
 			</div>
-			<button
-				className="uk-button uk-position-bottom-right uk-margin-small-right uk-margin-small-bottom"
-				onClick={BackToMenu}>+
-			</button>
+
 		</div>
 	);
 }

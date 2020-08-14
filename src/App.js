@@ -5,9 +5,7 @@ import { PeopleList } from './components/PeopleList';
 
 export function App() {
 
-	//Render selector
-	
-
+	require('dotenv').config();
 	return (
 		<div>
 			<PeopleList />

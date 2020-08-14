@@ -21,7 +21,7 @@ export function AddPersonForm() {
 
 	//The api is called to add info on database.
 	function addPerson(person) {
-		axios.post("http://127.0.0.1:3000/api/contacts", {
+		axios.post(process.env.REACT_APP_DB_URL, {
 			name: person.name,
 			tel: person.tel,
 			title: person.title,
