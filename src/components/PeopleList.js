@@ -12,7 +12,6 @@ export function PeopleList() {
 	const arr = [...contacts]
 		.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1);
 
-
 	/*
 	**We call the api to get all the info on databas with useCallback to avoid
 	**unnecesary multiple rendering.
@@ -31,17 +30,25 @@ export function PeopleList() {
 			})
 	}, [error, isLoaded]);
 
+	async function handleEdit(e) {
+		const res = await axios.get(process.env.REACT_APP_DB_URL + "/" + e.target.value);
+		ReactDOM.render(
+			<AddPersonForm contact={res.data} />,
+			document.getElementById('root')
+		);
+	}
+
 	/*
 	**The button from listItems holds id of the element from database, the
 	**event is triggered and deletePerson is called with index as parameter
 	*/
-	function handleClick(e) {
+	function handleDelete(e) {
 		deletePerson(e.target.value);
 	}
 
 	//We call the api to delete the info on database.
 	function deletePerson(id) {
-		axios.delete(process.env.REACT_APP_DB_URL + id)
+		axios.delete(process.env.REACT_APP_DB_URL + "/" + id)
 			.then((res) => {
 				console.log(res)
 				getContacts();
@@ -55,7 +62,7 @@ export function PeopleList() {
 		getContacts()
 	}, []);
 
-	function Render() {
+	function AddContact() {
 		ReactDOM.render(
 			<AddPersonForm />,
 			document.getElementById('root')
@@ -111,9 +118,14 @@ export function PeopleList() {
 					</div>
 					<div className="uk-card-footer">
 						<button
+							className="uk-button uk-button-secondary"
+							value={val._id}
+							onClick={handleEdit}>Editar
+						</button>
+						<button
 							className="uk-button uk-button-danger"
 							value={val._id}
-							onClick={handleClick}>Borrar
+							onClick={handleDelete}>Borrar
 						</button>
 					</div>
 				</div>
@@ -122,14 +134,11 @@ export function PeopleList() {
 	return (
 		<div>
 			<div className="uk-container uk-width-1-2@s uk-margin-large-top uk-position-relative">
-				<ul data-uk-accordion>
-					{listItems}
-				</ul>
+				<ul data-uk-accordion>{listItems}</ul>
 				<div className="uk-position-small uk-position-bottom-right uk-position-fixed uk-margin-small-bottom">
-
 					<button
 						className="uk-button uk-button-primary uk-border-rounded"
-						onClick={Render}>Agregar
+						onClick={AddContact}>Agregar
 						</button>
 				</div>
 			</div>
