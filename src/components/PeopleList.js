@@ -12,6 +12,7 @@ export function PeopleList() {
 	const arr = [...contacts]
 		.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1);
 
+
 	/*
 	**We call the api to get all the info on databas with useCallback to avoid
 	**unnecesary multiple rendering.
@@ -21,7 +22,7 @@ export function PeopleList() {
 			.then((res) => {
 				setIsLoaded(true);
 				setContacts(res.data);
-				console.log("nani? "+isLoaded);
+				console.log("nani? " + isLoaded);
 			})
 			.catch((err) => {
 				setIsLoaded(true);
@@ -118,21 +119,19 @@ export function PeopleList() {
 				</div>
 			</li>
 		));
-		/*	<button
-				className="uk-button uk-position-bottom-right uk-margin-small-right uk-margin-small-bottom"
-				onClick={BackToMenu}>+
-			</button>*/
 	return (
 		<div>
-			<div className="uk-container uk-width-1-2 uk-margin-large-top">
+			<div className="uk-container uk-width-1-2@s uk-margin-large-top uk-position-relative">
 				<ul data-uk-accordion>
 					{listItems}
 				</ul>
-				<button
-					className="uk-button uk-button-primary"
-					onClick={Render}>
-					Nuevo
-				</button>
+				<div className="uk-position-small uk-position-bottom-right uk-position-fixed uk-margin-small-bottom">
+
+					<button
+						className="uk-button uk-button-primary uk-border-rounded"
+						onClick={Render}>Agregar
+						</button>
+				</div>
 			</div>
 
 		</div>
