@@ -120,12 +120,13 @@ export function PeopleList() {
 						<button
 							className="uk-button uk-button-secondary"
 							value={val._id}
-							onClick={handleEdit}>Editar
+							onClick={handleEdit}>
+								<span uk-icon="pencil"></span>
 						</button>
 						<button
-							className="uk-button uk-button-danger"
+							className="uk-button uk-button-danger uk-margin-left"
 							value={val._id}
-							onClick={handleDelete}>Borrar
+							onClick={handleDelete}><span uk-icon="trash"></span>
 						</button>
 					</div>
 				</div>
