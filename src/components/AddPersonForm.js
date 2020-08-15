@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import ReactDOM from 'react-dom';
-import {App} from '../App';
+import { App } from '../App';
 import axios from 'axios';
 
-export function AddPersonForm() {
-	const { register, handleSubmit, errors } = useForm();
+export function AddPersonForm(props) {
+	const { register, handleSubmit } = useForm();
+	const [contact, setContact] = useState({ _id: 0, name: "", tel: "", title: "", email: "" })
 	// const [error, setError] = useState(null);
 	// const [isLoaded, setIsLoaded] = useState(false);
 
@@ -13,21 +14,29 @@ export function AddPersonForm() {
 	**onSubmit gets the data from ref in the form, addPerson function is called
 	**with an object data with the same structure.
 	*/
-	const onSubmit = (data, e) => {
-		addPerson(data);
-	}
-
-	//Render the menu when the button event is called.
-	function BackToMenu() {
-		ReactDOM.render(
-			<App />,
-		  document.getElementById('root')
-		);
+	const onSubmit = (person, e) => {
+		if (props.contact === "") {
+			addPerson(person);
+		}
+		else {
+			axios.put(process.env.REACT_APP_DB_URL + "/" + props.contact._id, {
+				name: person.name,
+				tel: person.tel,
+				title: person.title,
+				email: person.email
+			}).then((res) => {
+				console.log(res);
+			}).catch((err) => {
+				console.log(err);
+			})
+		}
+		e.target.reset();
+		BackToMenu();
 	}
 
 	//The api is called to add info on database.
 	function addPerson(person) {
-		axios.post("http://127.0.0.1:3001/api/contacts", {
+		axios.post(process.env.REACT_APP_DB_URL, {
 			name: person.name,
 			tel: person.tel,
 			title: person.title,
@@ -39,9 +48,32 @@ export function AddPersonForm() {
 		})
 	}
 
+	//Render the menu when the button event is called.
+	function BackToMenu() {
+		console.log(props.contact)
+		ReactDOM.render(
+			<App />,
+			document.getElementById('root')
+		);
+	}
+
+	/*
+	**On render props is checked and set contacts for correct
+	**using of edit function.
+	*/
+	useEffect(() => {
+		console.log(contact);
+		if (props.contact !== null) {
+			setContact(props.contact)
+		}
+		else {
+			setContact({ _id: 0, name: "", tel: "", title: "", email: "" })
+		}
+	}, []);
+
 	return (
-		<div className="uk-container uk-width-1-2 uk-margin-top">
-			<form className="" onSubmit={handleSubmit(onSubmit)}>
+		<div className="uk-container uk-width-1-2@m uk-margin-top">
+			<form onSubmit={handleSubmit(onSubmit)}>
 				<fieldset className="uk-fieldset">
 					<legend className="uk-legend">
 						Registro
@@ -53,7 +85,7 @@ export function AddPersonForm() {
 							placeholder="Name"
 							name="name"
 							ref={register({ required: true })}
-							defaultValue=""
+							defaultValue={contact.name}
 						/>
 					</div>
 					<div className="uk-margin">
@@ -63,7 +95,7 @@ export function AddPersonForm() {
 							placeholder="Title"
 							name="title"
 							ref={register({ required: false })}
-							defaultValue=""
+							defaultValue={contact.title}
 						/>
 					</div>
 					<div className="uk-margin">
@@ -73,7 +105,7 @@ export function AddPersonForm() {
 							placeholder="Number"
 							name="tel"
 							ref={register({ required: true })}
-							defaultValue=""
+							defaultValue={contact.tel}
 						/>
 					</div>
 					<div className="uk-margin">
@@ -83,18 +115,23 @@ export function AddPersonForm() {
 							placeholder="Email"
 							name="email"
 							ref={register({ required: false })}
-							defaultValue="" />
+							defaultValue={contact.email} />
 					</div>
 					<div className="uk-flex uk-flex-center">
 						<button
 							className="uk-button uk-button-primary"
-							type="submit">Add
+							type="submit">
+							Guardar
+						</button>
+						<button
+							className="uk-button uk-button-danger uk-margin-left"
+							type="button"
+							onClick={BackToMenu}>
+							Regresar
 						</button>
 					</div>
 				</fieldset>
 			</form>
-			<button onClick={BackToMenu}>back</button>
 		</div>
 	);
-
 }

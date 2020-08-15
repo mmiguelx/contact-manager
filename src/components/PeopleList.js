@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect, useCallback } from 'react';
+import { AddPersonForm } from './AddPersonForm';
 import ReactDOM from 'react-dom';
-import {App} from '../App'
+import axios from 'axios';
 
 export function PeopleList() {
 	const [error, setError] = useState(null);
@@ -13,31 +13,51 @@ export function PeopleList() {
 		.sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase()) ? 1 : -1);
 
 	/*
-	**The button from listItems holds id of the element from database, the
-	**event is triggered and deletePerson is called with index as parameter
+	**We call the api to get all the info on databas with useCallback to avoid
+	**unnecesary multiple rendering.
 	*/
-	function handleClick(e) {
-		deletePerson(e.target.value);
-	}
-
-	//We call the api to get all the info on database.
-	function getContacts() {
-		axios.get("http://127.0.0.1:3001/api/contacts")
+	const getContacts = useCallback(() => {
+		axios.get(process.env.REACT_APP_DB_URL)
 			.then((res) => {
 				setIsLoaded(true);
 				setContacts(res.data);
-				console.log(isLoaded);
+				console.log("nani? " + isLoaded);
 			})
 			.catch((err) => {
 				setIsLoaded(true);
 				setError(err);
 				console.log(error);
 			})
+	}, [error, isLoaded]);
+
+	//Async function to get the data from fb to edit it afterwards
+	async function handleEdit(e) {
+		const res = await axios.get(process.env.REACT_APP_DB_URL + "/" + e.target.value);
+		ReactDOM.render(
+			<AddPersonForm contact={res.data} />,
+			document.getElementById('root')
+		);
+	}
+
+	//Render AddPersonForm with empty prop to avoid errors with defaultValue
+	function AddContact() {
+		ReactDOM.render(
+			<AddPersonForm contact=""/>,
+			document.getElementById('root')
+		);
+	}
+
+	/*
+	**The button from listItems holds id of the element from database, the
+	**event is triggered and deletePerson is called with index as parameter
+	*/
+	function handleDelete(e) {
+		deletePerson(e.target.value);
 	}
 
 	//We call the api to delete the info on database.
 	function deletePerson(id) {
-		axios.delete("http://127.0.0.1:3001/api/contacts/" + id)
+		axios.delete(process.env.REACT_APP_DB_URL + "/" + id)
 			.then((res) => {
 				console.log(res)
 				getContacts();
@@ -48,33 +68,25 @@ export function PeopleList() {
 
 	//On render call getContacts in order to get the data from the database.
 	useEffect(() => {
-        getContacts()
-    }, []);
-
-	//Render the menu when the button event is called.
-	function BackToMenu() {
-		ReactDOM.render(
-			<App />,
-		  document.getElementById('root')
-		);
-	}
+		getContacts()
+	}, []);
 
 	//listItems iterates on data, and renders every element.
 	const listItems = arr
 		.map(val => (
 			<li key={val._id}>
-				<div className="uk-card uk-card-default uk-margin-top uk-margin-left uk-margin-right uk-margin-bottom" >
-					<div className="uk-card-header">
-						<div className="">
-							<h3
-								className="uk-card-title uk-margin-remove-bottom">
-								{val.name}
-							</h3>
-							<p className="uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">
-								{val.title}
-							</p>
-						</div>
+				<a className="uk-accordion-title">
+					<div>
+						<h3
+							className="uk-card-title uk-margin-remove-bottom">
+							{val.name}
+						</h3>
+						<p className="uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">
+							{val.title}
+						</p>
 					</div>
+				</a>
+				<div className="uk-accordion-content uk-margin-remove">
 					<div className="uk-card-body">
 						<form className="uk-margin">
 							<div className="uk-margin">
@@ -108,26 +120,31 @@ export function PeopleList() {
 					</div>
 					<div className="uk-card-footer">
 						<button
-							className="uk-button uk-button-danger"
+							className="uk-button uk-button-secondary"
 							value={val._id}
-							onClick={handleClick}>Borrar
+							onClick={handleEdit}>
+								<span uk-icon="pencil"></span>
+						</button>
+						<button
+							className="uk-button uk-button-danger uk-margin-left"
+							value={val._id}
+							onClick={handleDelete}><span uk-icon="trash"></span>
 						</button>
 					</div>
 				</div>
 			</li>
 		));
-
 	return (
-		<div data-uk-slider>
-			<div className="uk-slider-container">
-				<ul className="uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m ">
-					{listItems}
-				</ul>
+		<div>
+			<div className="uk-container uk-width-1-2@s uk-margin-large-top uk-position-relative">
+				<ul data-uk-accordion>{listItems}</ul>
+				<div className="uk-position-small uk-position-bottom-right uk-position-fixed uk-margin-small-bottom">
+					<button
+						className="uk-button uk-button-primary uk-border-rounded"
+						onClick={AddContact}>Agregar
+						</button>
+				</div>
 			</div>
-			<ul
-				className="uk-slider-nav uk-dotnav uk-flex-center uk-margin">
-			</ul>
-			<button onClick={BackToMenu}>back</button>
 		</div>
 	);
 }
