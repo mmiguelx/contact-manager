@@ -21,7 +21,7 @@ export function PeopleList() {
 			.then((res) => {
 				setIsLoaded(true);
 				setContacts(res.data);
-				console.log("nani? "+isLoaded);
+				console.log("nani? " + isLoaded);
 			})
 			.catch((err) => {
 				setIsLoaded(true);
@@ -33,7 +33,7 @@ export function PeopleList() {
 	async function handleEdit(e) {
 		const res = await axios.get(process.env.REACT_APP_DB_URL + "/" + e.target.value);
 		ReactDOM.render(
-			<AddPersonForm />,
+			<AddPersonForm contact={res.data} />,
 			document.getElementById('root')
 		);
 	}
@@ -131,16 +131,17 @@ export function PeopleList() {
 				</div>
 			</li>
 		));
-
 	return (
 		<div>
-			<div className="uk-container uk-width-1-2 uk-margin-large-top">
+			<div className="uk-container uk-width-1-2@s uk-margin-large-top uk-position-relative">
 				<ul data-uk-accordion>{listItems}</ul>
+				<div className="uk-position-small uk-position-bottom-right uk-position-fixed uk-margin-small-bottom">
+					<button
+						className="uk-button uk-button-primary uk-border-rounded"
+						onClick={AddContact}>Agregar
+						</button>
+				</div>
 			</div>
-			<button
-				className="uk-button uk-button-primary uk-button uk-position-bottom-right uk-margin-small-right uk-margin-small-bottom"
-				onClick={AddContact}>+
-			</button>
 		</div>
 	);
 }
