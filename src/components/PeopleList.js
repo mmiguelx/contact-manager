@@ -30,10 +30,19 @@ export function PeopleList() {
 			})
 	}, [error, isLoaded]);
 
+	//Async function to get the data from fb to edit it afterwards
 	async function handleEdit(e) {
 		const res = await axios.get(process.env.REACT_APP_DB_URL + "/" + e.target.value);
 		ReactDOM.render(
 			<AddPersonForm contact={res.data} />,
+			document.getElementById('root')
+		);
+	}
+
+	//Render AddPersonForm with empty prop to avoid errors with defaultValue
+	function AddContact() {
+		ReactDOM.render(
+			<AddPersonForm contact=""/>,
 			document.getElementById('root')
 		);
 	}
@@ -61,13 +70,6 @@ export function PeopleList() {
 	useEffect(() => {
 		getContacts()
 	}, []);
-
-	function AddContact() {
-		ReactDOM.render(
-			<AddPersonForm contact=""/>,
-			document.getElementById('root')
-		);
-	}
 
 	//listItems iterates on data, and renders every element.
 	const listItems = arr

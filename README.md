@@ -23,4 +23,5 @@ Planned features:
 <ul><li>More filters on contact info like name length or bad characters</li>
   <li>Error Handler</li>
   <li>A more appeling style</li>
+  <li>Check warnings</li>
 </ul>

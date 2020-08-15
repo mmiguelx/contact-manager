@@ -57,6 +57,10 @@ export function AddPersonForm(props) {
 		);
 	}
 
+	/*
+	**On render props is checked and set contacts for correct
+	**using of edit function.
+	*/
 	useEffect(() => {
 		console.log(contact);
 		if (props.contact !== null) {
