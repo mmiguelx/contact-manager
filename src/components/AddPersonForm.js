@@ -15,7 +15,7 @@ export function AddPersonForm(props) {
 	**with an object data with the same structure.
 	*/
 	const onSubmit = (person, e) => {
-		if (props.contact._id === 0) {
+		if (props.contact === "") {
 			addPerson(person);
 		}
 		else {

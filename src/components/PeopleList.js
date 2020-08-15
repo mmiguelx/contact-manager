@@ -64,7 +64,7 @@ export function PeopleList() {
 
 	function AddContact() {
 		ReactDOM.render(
-			<AddPersonForm />,
+			<AddPersonForm contact=""/>,
 			document.getElementById('root')
 		);
 	}
