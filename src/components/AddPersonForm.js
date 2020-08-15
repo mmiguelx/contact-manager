@@ -65,10 +65,10 @@ export function AddPersonForm(props) {
 		else {
 			setContact({ _id: 0, name: "", tel: "", title: "", email: "" })
 		}
-	}, [contact]);
+	}, []);
 
 	return (
-		<div className="uk-container uk-width-1-2 uk-margin-top">
+		<div className="uk-container uk-width-1-2@m uk-margin-top">
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<fieldset className="uk-fieldset">
 					<legend className="uk-legend">
