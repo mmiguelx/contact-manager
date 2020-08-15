@@ -6,6 +6,7 @@
 <li><a href=https://github.com/JavierCervilla>Javier Cervilla</a></li></ul></p>
 
 Updates:
+<p>16/08/19 -> Edit contact added</p>
 <p>14/08/19 -> Dynamic contact card and add button to open add person form, .env added</p>
 <p>09/08/19 -> Sectioned app</p>
 <p>09/08/19 -> Backend database done on MongoDB, in order to get the info from database <a href=https://github.com/Chokolove>Carlos Llamosas</a> created an API (Repo: <a href=https://github.com/Chokolove/contact-managerAPI>contact-managerAPI</a>).</p>
@@ -20,7 +21,6 @@ Updates:
 
 Planned features:
 <ul><li>More filters on contact info like name length or bad characters</li>
-  <li>Edit contacts</li>
   <li>Error Handler</li>
   <li>A more appeling style</li>
 </ul>
