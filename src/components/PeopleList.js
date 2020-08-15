@@ -65,8 +65,8 @@ export function PeopleList() {
 	const listItems = arr
 		.map(val => (
 			<li key={val._id}>
-				<a className="uk-accordion-title" href="#">
-					<div className="">
+				<a className="uk-accordion-title">
+					<div>
 						<h3
 							className="uk-card-title uk-margin-remove-bottom">
 							{val.name}
@@ -122,19 +122,19 @@ export function PeopleList() {
 				className="uk-button uk-position-bottom-right uk-margin-small-right uk-margin-small-bottom"
 				onClick={BackToMenu}>+
 			</button>*/
+		/*	<button
+			className="uk-button uk-button-primary uk-button uk-position-bottom-right uk-margin-small-right uk-margin-small-bottom"
+			onClick={Render}>
+			+
+		</button>*/
 	return (
 		<div>
 			<div className="uk-container uk-width-1-2 uk-margin-large-top">
-				<ul data-uk-accordion>
-					{listItems}
-				</ul>
-				<button
-					className="uk-button uk-button-primary"
-					onClick={Render}>
-					Nuevo
-				</button>
+				<ul data-uk-accordion>{listItems}</ul>
 			</div>
-
+			<div>
+				<span uk-icon="icon: check"></span>
+			</div>
 		</div>
 	);
 }
