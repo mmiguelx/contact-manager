@@ -66,8 +66,8 @@ export function PeopleList() {
 	const listItems = arr
 		.map(val => (
 			<li key={val._id}>
-				<a className="uk-accordion-title" href="#">
-					<div className="">
+				<a className="uk-accordion-title">
+					<div>
 						<h3
 							className="uk-card-title uk-margin-remove-bottom">
 							{val.name}
@@ -133,7 +133,6 @@ export function PeopleList() {
 						</button>
 				</div>
 			</div>
-
 		</div>
 	);
 }
