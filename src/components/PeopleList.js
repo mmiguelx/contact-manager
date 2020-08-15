@@ -30,17 +30,25 @@ export function PeopleList() {
 			})
 	}, [error, isLoaded]);
 
+	async function handleEdit(e) {
+		const res = await axios.get(process.env.REACT_APP_DB_URL + "/" + e.target.value);
+		ReactDOM.render(
+			<AddPersonForm />,
+			document.getElementById('root')
+		);
+	}
+
 	/*
 	**The button from listItems holds id of the element from database, the
 	**event is triggered and deletePerson is called with index as parameter
 	*/
-	function handleClick(e) {
+	function handleDelete(e) {
 		deletePerson(e.target.value);
 	}
 
 	//We call the api to delete the info on database.
 	function deletePerson(id) {
-		axios.delete(process.env.REACT_APP_DB_URL + id)
+		axios.delete(process.env.REACT_APP_DB_URL + "/" + id)
 			.then((res) => {
 				console.log(res)
 				getContacts();
@@ -54,7 +62,7 @@ export function PeopleList() {
 		getContacts()
 	}, []);
 
-	function Render() {
+	function AddContact() {
 		ReactDOM.render(
 			<AddPersonForm />,
 			document.getElementById('root')
@@ -110,31 +118,29 @@ export function PeopleList() {
 					</div>
 					<div className="uk-card-footer">
 						<button
+							className="uk-button uk-button-secondary"
+							value={val._id}
+							onClick={handleEdit}>Editar
+						</button>
+						<button
 							className="uk-button uk-button-danger"
 							value={val._id}
-							onClick={handleClick}>Borrar
+							onClick={handleDelete}>Borrar
 						</button>
 					</div>
 				</div>
 			</li>
 		));
-		/*	<button
-				className="uk-button uk-position-bottom-right uk-margin-small-right uk-margin-small-bottom"
-				onClick={BackToMenu}>+
-			</button>*/
-		/*	<button
-			className="uk-button uk-button-primary uk-button uk-position-bottom-right uk-margin-small-right uk-margin-small-bottom"
-			onClick={Render}>
-			+
-		</button>*/
+
 	return (
 		<div>
 			<div className="uk-container uk-width-1-2 uk-margin-large-top">
 				<ul data-uk-accordion>{listItems}</ul>
 			</div>
-			<div>
-				<span uk-icon="icon: check"></span>
-			</div>
+			<button
+				className="uk-button uk-button-primary uk-button uk-position-bottom-right uk-margin-small-right uk-margin-small-bottom"
+				onClick={AddContact}>+
+			</button>
 		</div>
 	);
 }
