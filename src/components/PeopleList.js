@@ -3,10 +3,40 @@ import { AddPersonForm } from './AddPersonForm';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
+//We will use this to capture the height
+function getWindowDimensions() {
+	const { innerWidth: width, innerHeight: height } = window;
+	return {
+		width,
+		height
+	};
+}
+
+export default function useWindowDimensions() {
+	const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+	useEffect(() => {
+		function handleResize() {
+			setWindowDimensions(getWindowDimensions());
+		}
+
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
+
+	return windowDimensions;
+}
+
+
 export function PeopleList() {
 	const [error, setError] = useState(null);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [contacts, setContacts] = useState([{ _id: 0, name: "", tel: "", title: "", email: "" }]);
+	const { height, width } = useWindowDimensions();
+
+	const h = {
+		height: height - 120
+	}
 
 	//Contacts is copied and sorted by name
 	const arr = [...contacts]
@@ -42,7 +72,7 @@ export function PeopleList() {
 	//Render AddPersonForm with empty prop to avoid errors with defaultValue
 	function AddContact() {
 		ReactDOM.render(
-			<AddPersonForm contact=""/>,
+			<AddPersonForm contact="" />,
 			document.getElementById('root')
 		);
 	}
@@ -69,6 +99,7 @@ export function PeopleList() {
 	//On render call getContacts in order to get the data from the database.
 	useEffect(() => {
 		getContacts()
+		console.log(height)
 	}, []);
 
 	//listItems iterates on data, and renders every element.
@@ -123,7 +154,7 @@ export function PeopleList() {
 							className="uk-button uk-button-secondary"
 							value={val._id}
 							onClick={handleEdit}>
-								<span uk-icon="pencil"></span>
+							<span uk-icon="pencil"></span>
 						</button>
 						<button
 							className="uk-button uk-button-danger uk-margin-left"
@@ -136,13 +167,13 @@ export function PeopleList() {
 		));
 	return (
 		<div>
-			<div className="uk-container uk-width-1-2@s uk-margin-large-top uk-position-relative">
-				<ul data-uk-accordion>{listItems}</ul>
+			<div className="uk-container uk-width-1-2@s uk-margin-large-top">
+				<ul className="uk-overflow-auto" style={h} data-uk-accordion>{listItems}</ul>
 				<div className="uk-position-small uk-position-bottom-right uk-position-fixed uk-margin-small-bottom">
 					<button
 						className="uk-button uk-button-primary uk-border-rounded"
 						onClick={AddContact}>Agregar
-						</button>
+					</button>
 				</div>
 			</div>
 		</div>
