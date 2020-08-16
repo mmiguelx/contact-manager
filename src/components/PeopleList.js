@@ -30,7 +30,7 @@ export default function useWindowDimensions() {
 
 export function PeopleList() {
 	const [contacts, setContacts] = useState([{ _id: 0, name: "", tel: "", title: "", email: "" }]);
-	const { height, width } = useWindowDimensions();
+	const { height } = useWindowDimensions();
 
 	const h = {
 		height: height - 120
@@ -93,7 +93,6 @@ export function PeopleList() {
 	//On render call getContacts in order to get the data from the database.
 	useEffect(() => {
 		getContacts()
-    console.log(height)
 	}, [getContacts]);
 
 	//listItems iterates on data, and renders every element.
