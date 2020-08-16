@@ -32,9 +32,13 @@ export function PeopleList() {
 	const [contacts, setContacts] = useState([{ _id: 0, name: "", tel: "", title: "", email: "" }]);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 8e865057e514731835a04d5d8b9e222826fd9c24
 	const { height, width } = useWindowDimensions();
+=======
+	const { height } = useWindowDimensions();
+>>>>>>> upstream/testing
 
 	const h = {
 		height: height - 120
@@ -106,6 +110,7 @@ export function PeopleList() {
 		getContacts()
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		console.log(height)
 	}, []);
 =======
@@ -113,6 +118,8 @@ export function PeopleList() {
 >>>>>>> upstream/testing
 =======
     console.log(height)
+=======
+>>>>>>> upstream/testing
 	}, [getContacts]);
 >>>>>>> 8e865057e514731835a04d5d8b9e222826fd9c24
 
