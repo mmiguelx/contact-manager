@@ -30,26 +30,11 @@ export default function useWindowDimensions() {
 
 export function PeopleList() {
 	const [contacts, setContacts] = useState([{ _id: 0, name: "", tel: "", title: "", email: "" }]);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 8e865057e514731835a04d5d8b9e222826fd9c24
 	const { height, width } = useWindowDimensions();
-=======
-	const { height } = useWindowDimensions();
->>>>>>> upstream/testing
 
 	const h = {
 		height: height - 120
 	}
-<<<<<<< HEAD
-=======
-	//const [error, setError] = useState(null);
-	//const [isLoaded, setIsLoaded] = useState(false);
->>>>>>> upstream/testing
-=======
->>>>>>> 8e865057e514731835a04d5d8b9e222826fd9c24
 
 	//Contacts is copied and sorted by name
 	const arr = [...contacts]
@@ -108,20 +93,8 @@ export function PeopleList() {
 	//On render call getContacts in order to get the data from the database.
 	useEffect(() => {
 		getContacts()
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 		console.log(height)
-	}, []);
-=======
 	}, [getContacts]);
->>>>>>> upstream/testing
-=======
-    console.log(height)
-=======
->>>>>>> upstream/testing
-	}, [getContacts]);
->>>>>>> 8e865057e514731835a04d5d8b9e222826fd9c24
 
 	//listItems iterates on data, and renders every element.
 	const listItems = arr
@@ -192,21 +165,9 @@ export function PeopleList() {
 				<ul className="uk-overflow-auto" style={h} data-uk-accordion>{listItems}</ul>
 				<div className="uk-position-small uk-position-bottom-right uk-position-fixed uk-margin-small-bottom">
 					<button
-<<<<<<< HEAD
-<<<<<<< HEAD
 						className="uk-button uk-button-primary uk-border-rounded"
 						onClick={AddContact}>Agregar
 					</button>
-=======
-						className="little uk-button uk-button-primary uk-border-rounded"
-						onClick={AddContact}>Add
-						</button>
->>>>>>> upstream/testing
-=======
-						className="little uk-button uk-button-primary uk-border-rounded"
-						onClick={AddContact}>Add
-						</button>
->>>>>>> 8e865057e514731835a04d5d8b9e222826fd9c24
 				</div>
 			</div>
 		</div>
