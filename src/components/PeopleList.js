@@ -29,8 +29,6 @@ export default function useWindowDimensions() {
 
 
 export function PeopleList() {
-	const [error, setError] = useState(null);
-	const [isLoaded, setIsLoaded] = useState(false);
 	const [contacts, setContacts] = useState([{ _id: 0, name: "", tel: "", title: "", email: "" }]);
 	const { height, width } = useWindowDimensions();
 
@@ -49,16 +47,12 @@ export function PeopleList() {
 	const getContacts = useCallback(() => {
 		axios.get(process.env.REACT_APP_DB_URL)
 			.then((res) => {
-				setIsLoaded(true);
 				setContacts(res.data);
-				console.log("nani? " + isLoaded);
 			})
 			.catch((err) => {
-				setIsLoaded(true);
-				setError(err);
-				console.log(error);
+				console.log(err);
 			})
-	}, [error, isLoaded]);
+	}, []);
 
 	//Async function to get the data from fb to edit it afterwards
 	async function handleEdit(e) {
@@ -99,29 +93,29 @@ export function PeopleList() {
 	//On render call getContacts in order to get the data from the database.
 	useEffect(() => {
 		getContacts()
-		console.log(height)
-	}, []);
+    console.log(height)
+	}, [getContacts]);
 
 	//listItems iterates on data, and renders every element.
 	const listItems = arr
 		.map(val => (
 			<li key={val._id}>
-				<a className="uk-accordion-title">
+				<span className="uk-accordion-title">
 					<div>
 						<h3
-							className="uk-card-title uk-margin-remove-bottom">
+							className="big uk-card-title uk-margin-remove-bottom">
 							{val.name}
 						</h3>
-						<p className="uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">
+						<p className="little uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">
 							{val.title}
 						</p>
 					</div>
-				</a>
+				</span>
 				<div className="uk-accordion-content uk-margin-remove">
 					<div className="uk-card-body">
 						<form className="uk-margin">
 							<div className="uk-margin">
-								<label className="uk-form-label" htmlFor="tel">
+								<label className="little uk-form-label" htmlFor="tel">
 									Number:
 								</label>
 								<div className="uk-form-controls">
@@ -134,7 +128,7 @@ export function PeopleList() {
 								</div>
 							</div>
 							<div className="">
-								<label className="uk-form-label" htmlFor="email">
+								<label className="little uk-form-label" htmlFor="email">
 									Email:
 								</label>
 								<div className="uk-form-controls">
@@ -151,7 +145,7 @@ export function PeopleList() {
 					</div>
 					<div className="uk-card-footer">
 						<button
-							className="uk-button uk-button-secondary"
+							className="uk-button uk-button-primary"
 							value={val._id}
 							onClick={handleEdit}>
 							<span uk-icon="pencil"></span>
@@ -171,9 +165,9 @@ export function PeopleList() {
 				<ul className="uk-overflow-auto" style={h} data-uk-accordion>{listItems}</ul>
 				<div className="uk-position-small uk-position-bottom-right uk-position-fixed uk-margin-small-bottom">
 					<button
-						className="uk-button uk-button-primary uk-border-rounded"
-						onClick={AddContact}>Agregar
-					</button>
+						className="little uk-button uk-button-primary uk-border-rounded"
+						onClick={AddContact}>Add
+						</button>
 				</div>
 			</div>
 		</div>

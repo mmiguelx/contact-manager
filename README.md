@@ -6,6 +6,7 @@
 <li><a href=https://github.com/JavierCervilla>Javier Cervilla</a></li></ul></p>
 
 Updates:
+<p>16/08/19 -> Warnings fixed, fix add button overlapping with other elements</p>
 <p>16/08/19 -> Edit contact added</p>
 <p>14/08/19 -> Dynamic contact card and add button to open add person form, .env added</p>
 <p>09/08/19 -> Sectioned app</p>
@@ -23,5 +24,5 @@ Planned features:
 <ul><li>More filters on contact info like name length or bad characters</li>
   <li>Error Handler</li>
   <li>A more appeling style</li>
-  <li>Check warnings</li>
+  <li>Search engine</li>
 </ul>
