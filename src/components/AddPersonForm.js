@@ -50,7 +50,6 @@ export function AddPersonForm(props) {
 
 	//Render the menu when the button event is called.
 	function BackToMenu() {
-		console.log(props.contact)
 		ReactDOM.render(
 			<App />,
 			document.getElementById('root')
@@ -62,14 +61,13 @@ export function AddPersonForm(props) {
 	**using of edit function.
 	*/
 	useEffect(() => {
-		console.log(contact);
 		if (props.contact !== null) {
 			setContact(props.contact)
 		}
 		else {
 			setContact({ _id: 0, name: "", tel: "", title: "", email: "" })
 		}
-	}, []);
+	}, [props.contact]);
 
 	return (
 		<div className="uk-container uk-width-1-2@m uk-margin-top">

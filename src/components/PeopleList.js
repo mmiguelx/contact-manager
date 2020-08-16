@@ -69,13 +69,13 @@ export function PeopleList() {
 	//On render call getContacts in order to get the data from the database.
 	useEffect(() => {
 		getContacts()
-	}, []);
+	}, [getContacts]);
 
 	//listItems iterates on data, and renders every element.
 	const listItems = arr
 		.map(val => (
 			<li key={val._id}>
-				<a className="uk-accordion-title">
+				<span className="uk-accordion-title">
 					<div>
 						<h3
 							className="uk-card-title uk-margin-remove-bottom">
@@ -85,7 +85,7 @@ export function PeopleList() {
 							{val.title}
 						</p>
 					</div>
-				</a>
+				</span>
 				<div className="uk-accordion-content uk-margin-remove">
 					<div className="uk-card-body">
 						<form className="uk-margin">
