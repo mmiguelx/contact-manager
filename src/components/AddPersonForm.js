@@ -50,7 +50,6 @@ export function AddPersonForm(props) {
 
 	//Render the menu when the button event is called.
 	function BackToMenu() {
-		console.log(props.contact)
 		ReactDOM.render(
 			<App />,
 			document.getElementById('root')
@@ -62,21 +61,20 @@ export function AddPersonForm(props) {
 	**using of edit function.
 	*/
 	useEffect(() => {
-		console.log(contact);
 		if (props.contact !== null) {
 			setContact(props.contact)
 		}
 		else {
 			setContact({ _id: 0, name: "", tel: "", title: "", email: "" })
 		}
-	}, []);
+	}, [props.contact]);
 
 	return (
 		<div className="uk-container uk-width-1-2@m uk-margin-top">
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<fieldset className="uk-fieldset">
-					<legend className="uk-legend">
-						Registro
+					<legend className="big uk-legend">
+						Register
 					</legend>
 					<div className="uk-margin">
 						<input
@@ -119,15 +117,15 @@ export function AddPersonForm(props) {
 					</div>
 					<div className="uk-flex uk-flex-center">
 						<button
-							className="uk-button uk-button-primary"
+							className="little uk-button uk-button-primary"
 							type="submit">
-							Guardar
+							Save
 						</button>
 						<button
-							className="uk-button uk-button-danger uk-margin-left"
+							className="little uk-button uk-button-danger uk-margin-left"
 							type="button"
 							onClick={BackToMenu}>
-							Regresar
+							Back
 						</button>
 					</div>
 				</fieldset>
