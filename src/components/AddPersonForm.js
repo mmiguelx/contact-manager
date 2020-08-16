@@ -73,8 +73,8 @@ export function AddPersonForm(props) {
 		<div className="uk-container uk-width-1-2@m uk-margin-top">
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<fieldset className="uk-fieldset">
-					<legend className="uk-legend">
-						Registro
+					<legend className="big uk-legend">
+						Register
 					</legend>
 					<div className="uk-margin">
 						<input
@@ -117,15 +117,15 @@ export function AddPersonForm(props) {
 					</div>
 					<div className="uk-flex uk-flex-center">
 						<button
-							className="uk-button uk-button-primary"
+							className="little uk-button uk-button-primary"
 							type="submit">
-							Guardar
+							Save
 						</button>
 						<button
-							className="uk-button uk-button-danger uk-margin-left"
+							className="little uk-button uk-button-danger uk-margin-left"
 							type="button"
 							onClick={BackToMenu}>
-							Regresar
+							Back
 						</button>
 					</div>
 				</fieldset>
