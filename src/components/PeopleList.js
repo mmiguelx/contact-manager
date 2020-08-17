@@ -35,6 +35,9 @@ export function PeopleList() {
 	const h = {
 		height: height - 120
 	}
+	const bkgColor = {
+		backgroundImage: "linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1))"
+	}
 
 	//Contacts is copied and sorted by name
 	const arr = [...contacts]
@@ -99,14 +102,14 @@ export function PeopleList() {
 	//listItems iterates on data, and renders every element.
 	const listItems = arr
 		.map(val => (
-			<li key={val._id}>
+			<li key={val._id} className="uk-light">
 				<span className="uk-accordion-title">
 					<div>
 						<h3
-							className="big uk-card-title uk-margin-remove-bottom">
+							className="uk-card-title uk-margin-remove-bottom">
 							{val.name}
 						</h3>
-						<p className="little uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">
+						<p className="uk-margin-remove-top uk-margin-remove-bottom">
 							{val.title}
 						</p>
 					</div>
@@ -115,7 +118,7 @@ export function PeopleList() {
 					<div className="uk-card-body">
 						<form className="uk-margin">
 							<div className="uk-margin">
-								<label className="little uk-form-label" htmlFor="tel">
+								<label className=" uk-form-label" htmlFor="tel">
 									Number:
 								</label>
 								<div className="uk-form-controls">
@@ -128,7 +131,7 @@ export function PeopleList() {
 								</div>
 							</div>
 							<div className="">
-								<label className="little uk-form-label" htmlFor="email">
+								<label className=" uk-form-label" htmlFor="email">
 									Email:
 								</label>
 								<div className="uk-form-controls">
@@ -145,13 +148,13 @@ export function PeopleList() {
 					</div>
 					<div className="uk-card-footer">
 						<button
-							className="uk-button uk-button-primary"
+							className="uk-button uk-button-primary btn-green"
 							value={val._id}
 							onClick={handleEdit}>
 							<span uk-icon="pencil"></span>
 						</button>
 						<button
-							className="uk-button uk-button-danger uk-margin-left"
+							className="uk-button uk-button-secondary uk-margin-left"
 							value={val._id}
 							onClick={handleDelete}><span uk-icon="trash"></span>
 						</button>
