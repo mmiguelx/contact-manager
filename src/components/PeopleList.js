@@ -33,7 +33,7 @@ export function PeopleList() {
 	const { height, width } = useWindowDimensions();
 
 	const h = {
-		height: height - 120
+		height: height - 190
 	}
 	const bkgColor = {
 		backgroundImage: "linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1))"
@@ -92,6 +92,19 @@ export function PeopleList() {
 				console.log(err)
 			})
 	}
+	// We  use this function for the filtering of the list
+	function handleKeyUp (e) {
+		let txt = e.target.value.toLowerCase()
+		let li = document.getElementsByTagName("li")
+		for(let i = 0; i < li.length; i++){
+			let name = li[i].getElementsByTagName("h3")[0].innerText
+			if (name.toLocaleLowerCase().indexOf(txt) > -1){
+				li[i].style.display=''
+			} else {
+				li[i].style.display='none'
+			}
+		}
+	};
 
 	//On render call getContacts in order to get the data from the database.
 	useEffect(() => {
@@ -165,6 +178,20 @@ export function PeopleList() {
 	return (
 		<div>
 			<div className="uk-container uk-width-1-2@s uk-margin-large-top">
+				<div className="uk-margin uk-light">
+					<label className=" uk-form-label" htmlFor="search">
+						Search:
+					</label>
+					<div className="uk-form-controls">
+						<input
+							className="uk-input"
+							id="search"
+							type="text"
+							placeholder="Name"
+							onKeyUp={handleKeyUp}
+						/>
+					</div>
+				</div>
 				<ul className="uk-overflow-auto" style={h} data-uk-accordion>{listItems}</ul>
 				<div className="uk-position-small uk-position-bottom-right uk-position-fixed uk-margin-small-bottom">
 					<button
