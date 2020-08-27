@@ -6,6 +6,9 @@
 <li><a href=https://github.com/JavierCervilla>Javier Cervilla</a></li></ul></p>
 
 Updates:
+<p>27/08/19 -> Added scripts folder</p>
+<p>27/08/19 -> Search engine and style added</p>
+<p>16/08/19 -> Warnings fixed, fix add button overlapping with other elements</p>
 <p>16/08/19 -> Edit contact added</p>
 <p>14/08/19 -> Dynamic contact card and add button to open add person form, .env added</p>
 <p>09/08/19 -> Sectioned app</p>
@@ -18,10 +21,3 @@ Updates:
 <p>03/08/19 -> Localstorage can save data from contacts.</p>
 <p>02/08/19 -> Now I'm working with someone else (<a href=https://github.com/JavierCervilla>Javier Cervilla</a>) who put some css styles using SASS and a <a href=https://github.com/ftdgomez>Daniel Gomez</a> mini framework called makeup. Source: https://github.com/ftdgomez/makeup</p>
 <p>01/08/19 -> Bases of the project has been created...</p>
-
-Planned features:
-<ul><li>More filters on contact info like name length or bad characters</li>
-  <li>Error Handler</li>
-  <li>A more appeling style</li>
-  <li>Check warnings</li>
-</ul>

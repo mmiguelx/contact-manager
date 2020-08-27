@@ -1,12 +1,19 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { AddPersonForm } from './AddPersonForm';
+import AddPersonForm from './AddPersonForm';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import DeletePerson from '../scripts/DeletePerson'
+import AddContact from '../scripts/AddContact'
+import useWindowDimensions from '../scripts/UseWindowDimensions'
+import handleKeyUp from '../scripts/HandleKeyUp'
 
 export function PeopleList() {
-	const [error, setError] = useState(null);
-	const [isLoaded, setIsLoaded] = useState(false);
 	const [contacts, setContacts] = useState([{ _id: 0, name: "", tel: "", title: "", email: "" }]);
+	const { height } = useWindowDimensions();
+
+	const h = {
+		height: height - 190
+	}
 
 	//Contacts is copied and sorted by name
 	const arr = [...contacts]
@@ -19,16 +26,12 @@ export function PeopleList() {
 	const getContacts = useCallback(() => {
 		axios.get(process.env.REACT_APP_DB_URL)
 			.then((res) => {
-				setIsLoaded(true);
 				setContacts(res.data);
-				console.log("nani? " + isLoaded);
 			})
 			.catch((err) => {
-				setIsLoaded(true);
-				setError(err);
-				console.log(error);
+				console.log(err);
 			})
-	}, [error, isLoaded]);
+	}, []);
 
 	//Async function to get the data from fb to edit it afterwards
 	async function handleEdit(e) {
@@ -39,58 +42,40 @@ export function PeopleList() {
 		);
 	}
 
-	//Render AddPersonForm with empty prop to avoid errors with defaultValue
-	function AddContact() {
-		ReactDOM.render(
-			<AddPersonForm contact=""/>,
-			document.getElementById('root')
-		);
-	}
-
 	/*
 	**The button from listItems holds id of the element from database, the
-	**event is triggered and deletePerson is called with index as parameter
+	**event is triggered and DeletePerson is called with index as parameter
 	*/
 	function handleDelete(e) {
-		deletePerson(e.target.value);
-	}
-
-	//We call the api to delete the info on database.
-	function deletePerson(id) {
-		axios.delete(process.env.REACT_APP_DB_URL + "/" + id)
-			.then((res) => {
-				console.log(res)
-				getContacts();
-			}).catch((err) => {
-				console.log(err)
-			})
+		DeletePerson(e.target.value);
+		getContacts();
 	}
 
 	//On render call getContacts in order to get the data from the database.
 	useEffect(() => {
 		getContacts()
-	}, []);
+	}, [getContacts]);
 
 	//listItems iterates on data, and renders every element.
 	const listItems = arr
 		.map(val => (
-			<li key={val._id}>
-				<a className="uk-accordion-title">
+			<li key={val._id} className="uk-light">
+				<span className="uk-accordion-title">
 					<div>
 						<h3
 							className="uk-card-title uk-margin-remove-bottom">
 							{val.name}
 						</h3>
-						<p className="uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">
+						<p className="uk-margin-remove-top uk-margin-remove-bottom">
 							{val.title}
 						</p>
 					</div>
-				</a>
+				</span>
 				<div className="uk-accordion-content uk-margin-remove">
 					<div className="uk-card-body">
 						<form className="uk-margin">
 							<div className="uk-margin">
-								<label className="uk-form-label" htmlFor="tel">
+								<label className=" uk-form-label" htmlFor="tel">
 									Number:
 								</label>
 								<div className="uk-form-controls">
@@ -103,7 +88,7 @@ export function PeopleList() {
 								</div>
 							</div>
 							<div className="">
-								<label className="uk-form-label" htmlFor="email">
+								<label className=" uk-form-label" htmlFor="email">
 									Email:
 								</label>
 								<div className="uk-form-controls">
@@ -120,13 +105,13 @@ export function PeopleList() {
 					</div>
 					<div className="uk-card-footer">
 						<button
-							className="uk-button uk-button-secondary"
+							className="uk-button uk-button-primary btn-green"
 							value={val._id}
 							onClick={handleEdit}>
-								<span uk-icon="pencil"></span>
+							<span uk-icon="pencil"></span>
 						</button>
 						<button
-							className="uk-button uk-button-danger uk-margin-left"
+							className="uk-button uk-button-secondary uk-margin-left"
 							value={val._id}
 							onClick={handleDelete}><span uk-icon="trash"></span>
 						</button>
@@ -136,13 +121,27 @@ export function PeopleList() {
 		));
 	return (
 		<div>
-			<div className="uk-container uk-width-1-2@s uk-margin-large-top uk-position-relative">
-				<ul data-uk-accordion>{listItems}</ul>
+			<div className="uk-container uk-width-1-2@s uk-margin-large-top">
+				<div className="uk-margin uk-light">
+					<label className=" uk-form-label" htmlFor="search">
+						Search:
+					</label>
+					<div className="uk-form-controls">
+						<input
+							className="uk-input"
+							id="search"
+							type="text"
+							placeholder="Name"
+							onKeyUp={handleKeyUp}
+						/>
+					</div>
+				</div>
+				<ul className="uk-overflow-auto" style={h} data-uk-accordion>{listItems}</ul>
 				<div className="uk-position-small uk-position-bottom-right uk-position-fixed uk-margin-small-bottom">
 					<button
 						className="uk-button uk-button-primary uk-border-rounded"
-						onClick={AddContact}>Agregar
-						</button>
+						onClick={AddContact}>Add
+					</button>
 				</div>
 			</div>
 		</div>
