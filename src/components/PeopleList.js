@@ -1,42 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { AddPersonForm } from './AddPersonForm';
+import AddPersonForm from './AddPersonForm';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-
-//We will use this to capture the height
-function getWindowDimensions() {
-	const { innerWidth: width, innerHeight: height } = window;
-	return {
-		width,
-		height
-	};
-}
-
-export default function useWindowDimensions() {
-	const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-
-	useEffect(() => {
-		function handleResize() {
-			setWindowDimensions(getWindowDimensions());
-		}
-
-		window.addEventListener('resize', handleResize);
-		return () => window.removeEventListener('resize', handleResize);
-	}, []);
-
-	return windowDimensions;
-}
-
+import DeletePerson from '../scripts/DeletePerson'
+import AddContact from '../scripts/AddContact'
+import useWindowDimensions from '../scripts/UseWindowDimensions'
+import handleKeyUp from '../scripts/HandleKeyUp'
 
 export function PeopleList() {
 	const [contacts, setContacts] = useState([{ _id: 0, name: "", tel: "", title: "", email: "" }]);
-	const { height, width } = useWindowDimensions();
+	const { height } = useWindowDimensions();
 
 	const h = {
 		height: height - 190
-	}
-	const bkgColor = {
-		backgroundImage: "linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1))"
 	}
 
 	//Contacts is copied and sorted by name
@@ -66,50 +42,18 @@ export function PeopleList() {
 		);
 	}
 
-	//Render AddPersonForm with empty prop to avoid errors with defaultValue
-	function AddContact() {
-		ReactDOM.render(
-			<AddPersonForm contact="" />,
-			document.getElementById('root')
-		);
-	}
-
 	/*
 	**The button from listItems holds id of the element from database, the
-	**event is triggered and deletePerson is called with index as parameter
+	**event is triggered and DeletePerson is called with index as parameter
 	*/
 	function handleDelete(e) {
-		deletePerson(e.target.value);
+		DeletePerson(e.target.value);
+		getContacts();
 	}
-
-	//We call the api to delete the info on database.
-	function deletePerson(id) {
-		axios.delete(process.env.REACT_APP_DB_URL + "/" + id)
-			.then((res) => {
-				console.log(res)
-				getContacts();
-			}).catch((err) => {
-				console.log(err)
-			})
-	}
-	// We  use this function for the filtering of the list
-	function handleKeyUp (e) {
-		let txt = e.target.value.toLowerCase()
-		let li = document.getElementsByTagName("li")
-		for(let i = 0; i < li.length; i++){
-			let name = li[i].getElementsByTagName("h3")[0].innerText
-			if (name.toLocaleLowerCase().indexOf(txt) > -1){
-				li[i].style.display=''
-			} else {
-				li[i].style.display='none'
-			}
-		}
-	};
 
 	//On render call getContacts in order to get the data from the database.
 	useEffect(() => {
 		getContacts()
-		console.log(height)
 	}, [getContacts]);
 
 	//listItems iterates on data, and renders every element.
@@ -196,7 +140,7 @@ export function PeopleList() {
 				<div className="uk-position-small uk-position-bottom-right uk-position-fixed uk-margin-small-bottom">
 					<button
 						className="uk-button uk-button-primary uk-border-rounded"
-						onClick={AddContact}>Agregar
+						onClick={AddContact}>Add
 					</button>
 				</div>
 			</div>

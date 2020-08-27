@@ -1,59 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import ReactDOM from 'react-dom';
-import { App } from '../App';
-import axios from 'axios';
+import BackToMenu from '../scripts/BackToMenu'
+import AddPerson from '../scripts/AddPerson'
+import EditPerson from '../scripts/EditPerson'
 
-export function AddPersonForm(props) {
+export default function AddPersonForm(props) {
 	const { register, handleSubmit } = useForm();
 	const [contact, setContact] = useState({ _id: 0, name: "", tel: "", title: "", email: "" })
 	// const [error, setError] = useState(null);
 	// const [isLoaded, setIsLoaded] = useState(false);
 
 	/*
-	**onSubmit gets the data from ref in the form, addPerson function is called
-	**with an object data with the same structure.
+	**onSubmit gets the data from ref in the form, AddPerson function  is called
+	**if there's no data, if there's a contact already created then we called
+	**the EditPerson function.
 	*/
 	const onSubmit = (person, e) => {
 		if (props.contact === "") {
-			addPerson(person);
+			AddPerson(person);
 		}
 		else {
-			axios.put(process.env.REACT_APP_DB_URL + "/" + props.contact._id, {
-				name: person.name,
-				tel: person.tel,
-				title: person.title,
-				email: person.email
-			}).then((res) => {
-				console.log(res);
-			}).catch((err) => {
-				console.log(err);
-			})
+			EditPerson(person, props.contact._id);
 		}
 		e.target.reset();
 		BackToMenu();
-	}
-
-	//The api is called to add info on database.
-	function addPerson(person) {
-		axios.post(process.env.REACT_APP_DB_URL, {
-			name: person.name,
-			tel: person.tel,
-			title: person.title,
-			email: person.email
-		}).then((res) => {
-			console.log(res);
-		}).catch((err) => {
-			console.log(err);
-		})
-	}
-
-	//Render the menu when the button event is called.
-	function BackToMenu() {
-		ReactDOM.render(
-			<App />,
-			document.getElementById('root')
-		);
 	}
 
 	/*
